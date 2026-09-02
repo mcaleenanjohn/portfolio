@@ -45,7 +45,7 @@
       var(--accent) 0 var(--scroll,0%),
       var(--line) var(--scroll,0%) 100%);
   }
-  .navlinks{display:flex; align-items:center; gap:32px; font-size:16px; letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap;}
+  .navlinks{display:flex; align-items:center; gap:32px; font-size:16px; letter-spacing:0.01em; white-space:nowrap;}
   .navlinks a{transition:color .2s ease;}
   .navlinks a:hover{color:var(--accent);}
 
@@ -73,7 +73,7 @@
     width:84px; height:84px; margin:-42px 0 0 -42px; border-radius:50%;
     background:var(--accent); color:#fff;
     display:flex; align-items:center; justify-content:center;
-    font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    font-size:13px; letter-spacing:0.01em;
     transform:scale(0); transition:transform .32s cubic-bezier(.2,.8,.2,1);
   }
   .view-cursor.is-active .view-cursor__inner{transform:scale(1);}
@@ -137,7 +137,7 @@
     nav .wrap{gap:16px;}
     .logo svg{width:32px;}
     .nav-rule{display:none;}
-    .navlinks{gap:18px; font-size:14px; letter-spacing:0.03em;}
+    .navlinks{gap:20px; font-size:15px; letter-spacing:0.01em;}
     .hero{aspect-ratio:auto; padding:120px 20px 40px;}
     .hero-intro{position:static; width:auto; margin-bottom:40px;}
     .hero-intro img{width:64px; height:64px; min-width:0; max-width:64px;}
@@ -206,7 +206,7 @@
   .about-text .lede{font-size:24px; line-height:1.4; margin-bottom:32px;}
   .about-text .body-copy p{font-size:18px; line-height:1.6; color:var(--body); margin-bottom:18px;}
   .about-text .body-copy p:last-child{margin-bottom:0;}
-  .about-links{display:flex; gap:32px; margin-top:32px; font-size:15px; letter-spacing:0.02em; text-transform:uppercase; color:var(--accent);}
+  .about-links{display:flex; gap:32px; margin-top:32px; font-size:15px; letter-spacing:0.01em; color:var(--accent);}
   .about-photo{flex-shrink:0; width:300px; height:300px; box-shadow:0 4px 50px rgba(0,0,0,0.08);}
   .about-photo img{width:100%; height:100%; object-fit:cover;}
 
@@ -238,7 +238,7 @@
   /* ---------- FOOTER ---------- */
   footer{background:var(--footer); color:var(--accent); padding:130px 0 60px; text-align:center;}
   footer h2{font-size:clamp(48px,11vw,140px); font-weight:400; line-height:0.95; margin-bottom:38px;}
-  .footer-links{display:flex; align-items:center; justify-content:center; gap:56px; font-size:16px; letter-spacing:0.05em; text-transform:uppercase;}
+  .footer-links{display:flex; align-items:center; justify-content:center; gap:56px; font-size:16px; letter-spacing:0.01em;}
   .footer-bottom{margin-top:90px; display:flex; justify-content:space-between; font-size:12px; color:rgba(255,255,255,0.5); letter-spacing:0.05em;}
 
   .reveal{opacity:0; transform:translateY(24px);}
