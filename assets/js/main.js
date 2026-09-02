@@ -60,15 +60,7 @@
     });
 
     if (!reduceMotion) {
-      docEl.classList.add('parallax-ready');
-
       const through = (trigger) => ({ trigger: trigger, start: 'top bottom', end: 'bottom top', scrub: true });
-
-      /* work thumbnails drift within their frames as they pass through */
-      document.querySelectorAll('.case-visual, .project-tile-img').forEach((frame) => {
-        const img = frame.querySelector('img');
-        if (img) gsap.fromTo(img, { yPercent: -9 }, { yPercent: 9, ease: 'none', scrollTrigger: through(frame) });
-      });
 
       /* About photo counter-drifts against the reading column (yPercent composes with .reveal's y) */
       const photo = document.querySelector('.about-photo');
