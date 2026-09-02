@@ -45,9 +45,10 @@
     });
   }
 
-  /* Scroll-reveal animations */
+  /* Scroll-reveal + parallax */
   if (window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
+
     gsap.utils.toArray('.reveal').forEach((el) => {
       gsap.fromTo(el,
         { opacity: 0, y: 24 },
@@ -57,6 +58,33 @@
         }
       );
     });
+
+    if (!reduceMotion) {
+      docEl.classList.add('parallax-ready');
+
+      const through = (trigger) => ({ trigger: trigger, start: 'top bottom', end: 'bottom top', scrub: true });
+
+      /* work thumbnails drift within their frames as they pass through */
+      document.querySelectorAll('.case-visual, .project-tile-img').forEach((frame) => {
+        const img = frame.querySelector('img');
+        if (img) gsap.fromTo(img, { yPercent: -9 }, { yPercent: 9, ease: 'none', scrollTrigger: through(frame) });
+      });
+
+      /* About photo counter-drifts against the reading column (yPercent composes with .reveal's y) */
+      const photo = document.querySelector('.about-photo');
+      if (photo) gsap.fromTo(photo, { yPercent: -10 }, { yPercent: 10, ease: 'none', scrollTrigger: through('.about') });
+
+      /* decorative squiggle drifts behind the About copy */
+      const squiggle = document.querySelector('.about-squiggle');
+      if (squiggle) gsap.fromTo(squiggle, { yPercent: -18 }, { yPercent: 20, ease: 'none', scrollTrigger: through('.about') });
+
+      /* hero headline lifts away as the hero scrolls out */
+      const headline = document.querySelector('.hero .headline');
+      if (headline) gsap.to(headline, {
+        yPercent: -26, ease: 'none',
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+      });
+    }
   } else {
     document.querySelectorAll('.reveal').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
   }
