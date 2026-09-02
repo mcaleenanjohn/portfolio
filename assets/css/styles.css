@@ -46,22 +46,23 @@
       var(--line) var(--scroll,0%) 100%);
   }
   .navlinks{display:flex; align-items:center; gap:32px; font-size:16px; letter-spacing:0.01em; white-space:nowrap;}
-  .navlinks a{transition:color .2s ease;}
   .navlinks a:hover{color:var(--accent);}
 
   /* ---------- CTA / LINK MOTION ---------- */
   .arrow{display:inline-block; transition:transform .3s cubic-bezier(.2,.8,.2,1);}
   .case-link,
   .about-links a,
-  .footer-links a{
+  .footer-links a,
+  .navlinks a{
     background-image:linear-gradient(currentColor,currentColor);
     background-repeat:no-repeat; background-position:left 100%;
     background-size:0% 1px; padding-bottom:2px;
-    transition:background-size .45s cubic-bezier(.2,.8,.2,1);
+    transition:background-size .45s cubic-bezier(.2,.8,.2,1), color .2s ease;
   }
   .case:hover .case-link,
   .about-links a:hover,
-  .footer-links a:hover{background-size:100% 1px;}
+  .footer-links a:hover,
+  .navlinks a:hover{background-size:100% 1px;}
   .case:hover .case-link .arrow,
   .navlinks a:hover .arrow,
   .about-links a:hover .arrow,
@@ -156,6 +157,7 @@
   .marquee-track span{
     font-size:15px; letter-spacing:0.05em;
     text-transform:uppercase; white-space:nowrap;
+    opacity:0.75;
   }
   .marquee-track .sep{display:flex; align-items:center; color:var(--accent); flex-shrink:0;}
   @keyframes marquee{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
