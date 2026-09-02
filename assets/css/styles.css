@@ -207,8 +207,8 @@
 
   /* ---------- ABOUT ---------- */
   .about{position:relative; background:var(--bg-about); padding:200px 0; overflow:hidden;}
-  .about-squiggle{position:absolute; left:42%; top:30%; width:48%; max-width:760px; pointer-events:none;}
-  .about-squiggle img{width:100%; height:auto; display:block;}
+  .about-signature{position:absolute; left:46.8%; top:23%; width:32.6%; max-width:470px; pointer-events:none;}
+  .about-signature img{width:100%; height:auto; display:block;}
   .about-inner{position:relative; z-index:1; max-width:1440px; margin:0 auto; padding:0 58px;}
   .about-block{max-width:889px; margin:0 auto 120px;}
   .about-head{font-size:40px; font-weight:400; margin-bottom:14px;}
@@ -243,7 +243,7 @@
     .philosophy{margin-bottom:80px;}
     .process-grid{flex-direction:column;}
     .process-card{min-height:0;}
-    .about-squiggle{display:none;}
+    .about-signature{display:none;}
   }
 
   /* ---------- FOOTER ---------- */
