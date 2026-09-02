@@ -66,6 +66,10 @@
       const photo = document.querySelector('.about-photo');
       if (photo) gsap.fromTo(photo, { yPercent: -10 }, { yPercent: 10, ease: 'none', scrollTrigger: through('.about') });
 
+      /* signature drifts gently behind the About copy */
+      const signature = document.querySelector('.about-signature');
+      if (signature) gsap.fromTo(signature, { yPercent: -14 }, { yPercent: 16, ease: 'none', scrollTrigger: through('.about') });
+
       /* hero headline lifts away as the hero scrolls out */
       const headline = document.querySelector('.hero .headline');
       if (headline) gsap.to(headline, {
