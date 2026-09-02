@@ -66,9 +66,28 @@
       const photo = document.querySelector('.about-photo');
       if (photo) gsap.fromTo(photo, { yPercent: -10 }, { yPercent: 10, ease: 'none', scrollTrigger: through('.about') });
 
-      /* signature drifts behind the About copy */
+      /* signature drifts behind the About copy + draws itself on as you scroll in */
       const signature = document.querySelector('.about-signature');
-      if (signature) gsap.fromTo(signature, { yPercent: -14 }, { yPercent: 16, ease: 'none', scrollTrigger: through('.about') });
+      if (signature) {
+        gsap.fromTo(signature, { yPercent: -14 }, { yPercent: 16, ease: 'none', scrollTrigger: through('.about') });
+
+        const sigImg = signature.querySelector('img');
+        fetch(sigImg ? sigImg.src : 'assets/images/about-signature.svg')
+          .then((r) => r.text())
+          .then((markup) => {
+            signature.innerHTML = markup;
+            const pen = signature.querySelector('.sig-pen');
+            if (!pen) return;
+            const len = pen.getTotalLength();
+            gsap.set(pen, { strokeDasharray: len, strokeDashoffset: len });
+            gsap.to(pen, {
+              strokeDashoffset: 0, ease: 'none',
+              scrollTrigger: { trigger: signature, start: 'top 88%', end: 'top 32%', scrub: 0.7 }
+            });
+            ScrollTrigger.refresh();
+          })
+          .catch(() => {});
+      }
 
       /* hero headline lifts away as the hero scrolls out */
       const headline = document.querySelector('.hero .headline');
