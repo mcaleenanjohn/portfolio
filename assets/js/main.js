@@ -80,3 +80,156 @@
   } else {
     document.querySelectorAll('.reveal').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
   }
+
+  /* ---------- Resume modal ---------- */
+  (function resumeModal() {
+    const triggers = document.querySelectorAll('[data-resume]');
+    if (!triggers.length) return;
+
+    // resolve the PDF path (and asset prefix) from a nav link so it works from /work/ too
+    const pdfHref = triggers[0].getAttribute('href') || 'resume/JohnMcAleenan_Resume2026.pdf';
+    const prefix = pdfHref.startsWith('../') ? '../' : '';
+    const iconDownload = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>';
+    const iconX = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
+    const hbLogo = '<svg viewBox="0 0 15.6 15.6" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9.79627 0L11.4024 2.75227L12.9801 0H15.6L12.644 5.08508V7.46961H10.2234V5.08508L7.23899 0.0861887V7.46961H4.78993V4.76906H2.45476V7.46961H0.00569238V0H2.45476V2.70055H4.78993V0H9.80197H9.79627ZM0 8.06718H4.50515C6.33341 8.06718 7.12508 8.60729 7.12508 10.0552C7.12508 10.8194 6.67513 11.4457 5.96889 11.7043C6.72639 11.9341 7.15356 12.5547 7.15356 13.4683C7.15356 14.8875 6.36757 15.6 4.53362 15.6H0V8.07293V8.06718ZM4.8127 10.423C4.8127 9.9116 4.58489 9.65879 4.07799 9.65879H2.33516V11.2217H4.10646C4.58488 11.2217 4.8127 10.9631 4.8127 10.4287V10.423ZM2.33516 12.3823V13.9739H4.16342C4.64184 13.9739 4.86966 13.7211 4.86966 13.1523C4.86966 12.6409 4.64184 12.3881 4.13494 12.3881H2.33516V12.3823ZM7.76867 8.06718H10.2462V11.3883L12.6953 8.06718H15.4804L12.775 11.5319L15.5601 15.5943H12.5757L10.2405 11.9571V15.5943H7.76298V8.06718H7.76867Z" fill="#142127"/></svg>';
+
+    const modal = document.createElement('div');
+    modal.className = 'resume-modal';
+    modal.id = 'resume-modal';
+    modal.hidden = true;
+    modal.innerHTML =
+      '<div class="resume-modal__scrim" data-close></div>' +
+      '<div class="resume-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="resume-modal-title">' +
+        '<span class="resume-modal__handle" aria-hidden="true"></span>' +
+        '<header class="resume-modal__bar">' +
+          '<span class="resume-modal__eyebrow" id="resume-modal-title">Resume</span>' +
+          '<div class="resume-modal__actions">' +
+            '<a class="resume-modal__download" href="' + pdfHref + '" download>' + iconDownload + 'Download PDF</a>' +
+            '<button type="button" class="resume-modal__close" data-close aria-label="Close resume">' + iconX + '</button>' +
+          '</div>' +
+        '</header>' +
+        '<div class="resume-modal__body" tabindex="0">' +
+          '<div class="rz-block">' +
+            '<div class="rz-block" style="gap:8px">' +
+              '<p class="rz-name">John McAleenan</p>' +
+              '<p class="rz-role">Senior Product Designer <span class="rz-star">✹</span> Brooklyn, NY</p>' +
+            '</div>' +
+            '<div class="rz-divider"></div>' +
+            '<p class="rz-summary">Senior Product Designer with 10+ years of experience building 0→1 and growth products across AI, SaaS, and complex workflows. I specialize in turning ambiguous problems into simple, scalable experiences and driving alignment across product, engineering, marketing, and research.</p>' +
+            '<div class="rz-links">' +
+              '<a href="https://www.figma.com/deck/bVEYKmLAo93Wo1Is31jivS" target="_blank" rel="noopener">Portfolio (selected works) ↗</a>' +
+              '<a href="https://www.linkedin.com/in/john-mcaleenan-b119338a/" target="_blank" rel="noopener">LinkedIn ↗</a>' +
+              '<a class="rz-email" href="mailto:mcaleenandesign@gmail.com">Email: mcaleenandesign@gmail.com</a>' +
+            '</div>' +
+          '</div>' +
+
+          '<div class="rz-block" style="gap:24px">' +
+            '<div class="rz-block"><div class="rz-divider"></div><p class="rz-eyebrow">Experience</p></div>' +
+
+            '<div class="rz-job">' +
+              '<div class="rz-job__head"><span class="rz-chip rz-chip--honeybook">' + hbLogo + '</span><p class="rz-job__co">HoneyBook</p></div>' +
+              '<div class="rz-job__meta"><p class="rz-job__role">Product Designer → Senior Product Designer</p><p class="rz-job__dates">Nov 2022 – Aug 2026</p></div>' +
+              '<ul class="rz-bullets">' +
+                '<li><b>Led end-to-end product design across acquisition, onboarding, referrals, templates, AI, and financial products</b>, partnering with Product, Engineering, Marketing, Research, and Data from strategy through launch.</li>' +
+                '<li><b>Designed and shipped 0→1 experiences</b> including Template Gallery, Floor Planning, AI onboarding, and integrations with Prismm, Pic-Time, and The Knot.</li>' +
+                '<li><b>Led HoneyBook’s marketing site experience</b>, designing 40+ high-conversion landing pages and partnering with growth marketing to establish a scalable system for campaigns and acquisition.</li>' +
+                '<li><b>Drove the evolution of HoneyBook’s design system</b>, improving consistency and design velocity across the product while introducing reusable patterns and components.</li>' +
+                '<li><b>Led product discovery and design direction for ambiguous, cross-functional problems</b>, facilitating critiques, challenging assumptions, and aligning stakeholders around customer and business needs.</li>' +
+                '<li><b>Mentored designers and raised the quality bar for product design</b> through critiques, collaboration, and design leadership across the organization.</li>' +
+              '</ul>' +
+            '</div>' +
+
+            '<div class="rz-divider"></div>' +
+
+            '<div class="rz-job">' +
+              '<div class="rz-job__head"><span class="rz-chip rz-chip--endeavor"><img src="' + prefix + 'assets/images/endeavor-logo.png" alt=""></span><p class="rz-job__co">Endeavor</p></div>' +
+              '<div class="rz-job__meta"><p class="rz-job__role">Senior Graphic Designer → Creative Lead → Product Designer</p><p class="rz-job__dates">Aug 2015 – Nov 2022</p></div>' +
+              '<ul class="rz-bullets">' +
+                '<li>Transitioned from graphic design into product design, leading digital experiences across marketing, product, and brand.</li>' +
+                '<li>Joined a new 0→1 product team, helping establish product strategy, design foundations, and reusable systems from the ground up.</li>' +
+                '<li>Designed customer-facing products, internal tools, and digital platforms while partnering with executives, product managers, and engineers to shape product direction.</li>' +
+              '</ul>' +
+            '</div>' +
+
+            '<div class="rz-divider"></div>' +
+            '<p class="rz-earlier">↶ Earlier career: 6+ years of experience in graphic design, branding, and digital marketing.</p>' +
+          '</div>' +
+
+          '<div class="rz-block">' +
+            '<div class="rz-block"><div class="rz-divider"></div><p class="rz-eyebrow">Core expertise</p></div>' +
+            '<ul class="rz-list">' +
+              '<li>Product Strategy</li><li>0→1 Product Development</li><li>AI Product Design</li><li>Product Discovery</li>' +
+              '<li>Growth &amp; Activation</li><li>Design Systems</li><li>Cross-functional Leadership</li><li>Executive Storytelling</li>' +
+            '</ul>' +
+          '</div>' +
+
+          '<div class="rz-block">' +
+            '<div class="rz-block"><div class="rz-divider"></div><p class="rz-eyebrow">AI &amp; Emerging Technologies</p></div>' +
+            '<ul class="rz-list">' +
+              '<li>AI-native product design</li><li>AI interaction &amp; workflow design</li><li>Rapid AI-assisted prototyping</li><li>Design-to-code workflows</li>' +
+              '<li>Prompt engineering</li><li>Working directly in codebases</li><li>Claude Code / Claude Design</li><li>Cursor / ChatGPT / Anthropic tools</li>' +
+            '</ul>' +
+          '</div>' +
+
+          '<div class="rz-block">' +
+            '<div class="rz-block"><div class="rz-divider"></div><p class="rz-eyebrow">Tools</p></div>' +
+            '<p class="rz-summary">Figma · FigJam · Claude · Cursor · GitHub · Adobe CC · Webflow</p>' +
+          '</div>' +
+
+          '<div class="rz-block">' +
+            '<div class="rz-block"><div class="rz-divider"></div><p class="rz-eyebrow">Education</p></div>' +
+            '<p class="rz-edu"><strong>Savannah College of Art and Design</strong>BFA, Graphic Design</p>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(modal);
+
+    const dialog = modal.querySelector('.resume-modal__dialog');
+    const closeBtn = modal.querySelector('.resume-modal__close');
+    let lastFocused = null;
+    let closeTimer = null;
+
+    const focusables = () => modal.querySelectorAll(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+
+    function open(e) {
+      if (e) e.preventDefault();
+      if (modal.classList.contains('is-open')) return;
+      clearTimeout(closeTimer);
+      lastFocused = document.activeElement;
+      modal.hidden = false;
+      document.body.classList.add('resume-open');
+      // force reflow so the transition runs from the hidden state
+      void modal.offsetWidth;
+      modal.classList.add('is-open');
+      closeBtn.focus();
+      document.addEventListener('keydown', onKeydown);
+    }
+
+    function close() {
+      if (!modal.classList.contains('is-open')) return;
+      modal.classList.remove('is-open');
+      document.body.classList.remove('resume-open');
+      document.removeEventListener('keydown', onKeydown);
+      closeTimer = setTimeout(() => { modal.hidden = true; }, 400);
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    function onKeydown(ev) {
+      if (ev.key === 'Escape') { close(); return; }
+      if (ev.key === 'Tab') {
+        const items = Array.prototype.slice.call(focusables());
+        if (!items.length) return;
+        const first = items[0], last = items[items.length - 1];
+        if (ev.shiftKey && document.activeElement === first) { ev.preventDefault(); last.focus(); }
+        else if (!ev.shiftKey && document.activeElement === last) { ev.preventDefault(); first.focus(); }
+        else if (!modal.contains(document.activeElement)) { ev.preventDefault(); first.focus(); }
+      }
+    }
+
+    triggers.forEach((t) => t.addEventListener('click', open));
+    modal.addEventListener('click', (ev) => {
+      if (ev.target.closest('[data-close]')) close();
+    });
+  })();
