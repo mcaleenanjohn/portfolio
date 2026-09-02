@@ -150,8 +150,14 @@
   /* ---------- MARQUEE ---------- */
   .marquee-bar{background:var(--footer); color:#fff; padding:14px 0; overflow:hidden;}
   .marquee-track{
+    display:flex; width:max-content;
+    animation:marquee 92s linear infinite;
+  }
+  /* two identical groups; each self-contained (incl. trailing space) so
+     translateX(-50%) tiles seamlessly with no jump on repeat */
+  .marquee-group{
     display:flex; align-items:center; gap:80px;
-    width:max-content; animation:marquee 92s linear infinite;
+    padding-right:80px; flex-shrink:0;
   }
   @media (prefers-reduced-motion: reduce){ .marquee-track{animation:none;} }
   .marquee-track span{
