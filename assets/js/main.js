@@ -82,7 +82,7 @@
             gsap.set(pen, { strokeDasharray: len, strokeDashoffset: len });
             gsap.to(pen, {
               strokeDashoffset: 0, ease: 'none',
-              scrollTrigger: { trigger: signature, start: 'top 88%', end: 'top 32%', scrub: 0.7 }
+              scrollTrigger: { trigger: signature, start: 'top 95%', end: 'top 45%', scrub: 0.7 }
             });
             ScrollTrigger.refresh();
           })
