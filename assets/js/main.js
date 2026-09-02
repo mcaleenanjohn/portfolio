@@ -59,6 +59,28 @@
       );
     });
 
+    /* Signature writes itself on as you scroll through About.
+       Runs regardless of reduced-motion since it is directly scroll-coupled. */
+    const signature = document.querySelector('.about-signature');
+    if (signature && getComputedStyle(signature).display !== 'none') {
+      const sigImg = signature.querySelector('img');
+      fetch(sigImg ? sigImg.src : 'assets/images/about-signature.svg')
+        .then((r) => r.text())
+        .then((markup) => {
+          signature.innerHTML = markup;
+          const pen = signature.querySelector('.sig-pen');
+          if (!pen) return;
+          const len = pen.getTotalLength();
+          gsap.set(pen, { strokeDasharray: len, strokeDashoffset: len });
+          gsap.to(pen, {
+            strokeDashoffset: 0, ease: 'none',
+            scrollTrigger: { trigger: signature, start: 'top 92%', end: 'bottom 15%', scrub: true }
+          });
+          ScrollTrigger.refresh();
+        })
+        .catch(() => {});
+    }
+
     if (!reduceMotion) {
       const through = (trigger) => ({ trigger: trigger, start: 'top bottom', end: 'bottom top', scrub: true });
 
@@ -66,28 +88,8 @@
       const photo = document.querySelector('.about-photo');
       if (photo) gsap.fromTo(photo, { yPercent: -10 }, { yPercent: 10, ease: 'none', scrollTrigger: through('.about') });
 
-      /* signature drifts behind the About copy + draws itself on as you scroll in */
-      const signature = document.querySelector('.about-signature');
-      if (signature) {
-        gsap.fromTo(signature, { yPercent: -14 }, { yPercent: 16, ease: 'none', scrollTrigger: through('.about') });
-
-        const sigImg = signature.querySelector('img');
-        fetch(sigImg ? sigImg.src : 'assets/images/about-signature.svg')
-          .then((r) => r.text())
-          .then((markup) => {
-            signature.innerHTML = markup;
-            const pen = signature.querySelector('.sig-pen');
-            if (!pen) return;
-            const len = pen.getTotalLength();
-            gsap.set(pen, { strokeDasharray: len, strokeDashoffset: len });
-            gsap.to(pen, {
-              strokeDashoffset: 0, ease: 'none',
-              scrollTrigger: { trigger: signature, start: 'top 95%', end: 'top 45%', scrub: 0.7 }
-            });
-            ScrollTrigger.refresh();
-          })
-          .catch(() => {});
-      }
+      /* signature drifts behind the About copy */
+      if (signature) gsap.fromTo(signature, { yPercent: -14 }, { yPercent: 16, ease: 'none', scrollTrigger: through('.about') });
 
       /* hero headline lifts away as the hero scrolls out */
       const headline = document.querySelector('.hero .headline');
