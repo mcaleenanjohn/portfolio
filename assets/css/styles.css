@@ -53,7 +53,9 @@
   .case-link,
   .about-links a,
   .footer-links a,
-  .navlinks a{
+  .navlinks a,
+  .resume-modal__download,
+  .rz-links a{
     background-image:linear-gradient(currentColor,currentColor);
     background-repeat:no-repeat; background-position:left 100%;
     background-size:0% 1px; padding-bottom:2px;
@@ -62,11 +64,14 @@
   .case:hover .case-link,
   .about-links a:hover,
   .footer-links a:hover,
-  .navlinks a:hover{background-size:100% 1px;}
+  .navlinks a:hover,
+  .resume-modal__download:hover,
+  .rz-links a:hover{background-size:100% 1px;}
   .case:hover .case-link .arrow,
   .navlinks a:hover .arrow,
   .about-links a:hover .arrow,
   .footer-links a:hover .arrow{transform:translate(3px,-3px);}
+  .resume-modal__download:hover svg{transform:translateY(2px);}
 
   /* ---------- CUSTOM "VIEW" CURSOR (work thumbnails) ---------- */
   .view-cursor{position:fixed; top:0; left:0; z-index:1000; pointer-events:none;}
@@ -293,10 +298,8 @@
   .resume-modal__actions{display:flex; align-items:center; gap:32px;}
   .resume-modal__download{
     display:inline-flex; align-items:center; gap:6px; font-size:16px; color:var(--accent);
-    transition:opacity .2s ease;
   }
-  .resume-modal__download:hover{opacity:.7;}
-  .resume-modal__download svg{width:16px; height:16px;}
+  .resume-modal__download svg{width:16px; height:16px; transition:transform .3s cubic-bezier(.2,.8,.2,1);}
   .resume-modal__close{
     display:flex; width:24px; height:24px; padding:0; border:0; background:none;
     color:var(--ink); cursor:pointer; transition:color .2s ease;
@@ -319,8 +322,7 @@
   .rz-role .rz-star{color:#ada9a8;}
   .rz-summary{font-size:16px; line-height:1.35; color:var(--body);}
   .rz-links{display:flex; flex-wrap:wrap; gap:14px 50px; font-size:16px;}
-  .rz-links a{color:var(--accent); transition:opacity .2s ease;}
-  .rz-links a:hover{opacity:.7;}
+  .rz-links a{color:var(--accent);}
   .rz-links .rz-email{color:var(--ink);}
   .rz-job{display:flex; flex-direction:column; gap:16px;}
   .rz-job__head{display:flex; align-items:center; gap:12px;}
