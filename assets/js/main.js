@@ -59,29 +59,12 @@
       );
     });
 
-    /* Signature writes itself on as you scroll through About (inline SVG,
-       so no fetch — works on file:// too). Runs regardless of reduced-motion
-       since it is directly scroll-coupled. */
-    const signature = document.querySelector('.about-signature');
-    const pen = signature && signature.querySelector('.sig-pen');
-    if (pen && getComputedStyle(signature).display !== 'none') {
-      const len = pen.getTotalLength();
-      gsap.set(pen, { strokeDasharray: len, strokeDashoffset: len });
-      gsap.to(pen, {
-        strokeDashoffset: 0, ease: 'none',
-        scrollTrigger: { trigger: signature, start: 'top 92%', end: 'bottom 15%', scrub: true }
-      });
-    }
-
     if (!reduceMotion) {
       const through = (trigger) => ({ trigger: trigger, start: 'top bottom', end: 'bottom top', scrub: true });
 
       /* About photo counter-drifts against the reading column (yPercent composes with .reveal's y) */
       const photo = document.querySelector('.about-photo');
       if (photo) gsap.fromTo(photo, { yPercent: -10 }, { yPercent: 10, ease: 'none', scrollTrigger: through('.about') });
-
-      /* signature drifts behind the About copy */
-      if (signature) gsap.fromTo(signature, { yPercent: -14 }, { yPercent: 16, ease: 'none', scrollTrigger: through('.about') });
 
       /* hero headline lifts away as the hero scrolls out */
       const headline = document.querySelector('.hero .headline');
