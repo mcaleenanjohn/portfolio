@@ -62,6 +62,23 @@
     if (!reduceMotion) {
       const through = (trigger) => ({ trigger: trigger, start: 'top bottom', end: 'bottom top', scrub: true });
 
+      /* About process list: each row's hairline draws in, then the number
+         drifts in from the margin and the copy rises — one small build per row */
+      document.querySelectorAll('.process-list .process-step').forEach((step) => {
+        const rule = step.previousElementSibling;
+        const num = step.querySelector('.process-step__num');
+        const body = step.querySelector('.process-step__body');
+        const tl = gsap.timeline({ scrollTrigger: { trigger: step, start: 'top 84%' } });
+        if (rule) tl.fromTo(rule, { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: 'power2.inOut' });
+        tl.fromTo(num, { autoAlpha: 0, x: -12 }, { autoAlpha: 1, x: 0, duration: 0.6, ease: 'power2.out' }, 0.1);
+        tl.fromTo(body, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 0.16);
+      });
+      const rules = document.querySelectorAll('.process-rule');
+      if (rules.length) gsap.fromTo(rules[rules.length - 1], { scaleX: 0 }, {
+        scaleX: 1, duration: 0.55, ease: 'power2.inOut',
+        scrollTrigger: { trigger: rules[rules.length - 1], start: 'top 92%' }
+      });
+
       /* About photo counter-drifts against the reading column (yPercent composes with .reveal's y) */
       const photo = document.querySelector('.about-photo');
       if (photo) gsap.fromTo(photo, { yPercent: -10 }, { yPercent: 10, ease: 'none', scrollTrigger: through('.about') });
