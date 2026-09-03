@@ -87,6 +87,27 @@
       const signature = document.querySelector('.about-signature');
       if (signature) gsap.fromTo(signature, { yPercent: -14 }, { yPercent: 16, ease: 'none', scrollTrigger: through('.about') });
 
+      /* Design philosophy: the quote warms up word by word as it scrolls in */
+      const phQuote = document.querySelector('.philosophy-quote');
+      if (phQuote) {
+        const words = phQuote.textContent.trim().split(/\s+/);
+        phQuote.textContent = '';
+        words.forEach((w, i) => {
+          const span = document.createElement('span');
+          span.className = 'ph-word';
+          span.textContent = w;
+          phQuote.appendChild(span);
+          if (i < words.length - 1) phQuote.appendChild(document.createTextNode(' '));
+        });
+        gsap.fromTo(phQuote.querySelectorAll('.ph-word'),
+          { opacity: 0.18, filter: 'blur(4px)' },
+          {
+            opacity: 1, filter: 'blur(0px)', ease: 'none', stagger: { each: 1 },
+            scrollTrigger: { trigger: '.philosophy', start: 'top 85%', end: 'top 30%', scrub: 0.6 }
+          }
+        );
+      }
+
       /* hero headline lifts away as the hero scrolls out */
       const headline = document.querySelector('.hero .headline');
       if (headline) gsap.to(headline, {
