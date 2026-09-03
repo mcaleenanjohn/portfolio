@@ -62,34 +62,56 @@
     if (!reduceMotion) {
       const through = (trigger) => ({ trigger: trigger, start: 'top bottom', end: 'bottom top', scrub: true });
 
-      /* Hero entrance: intro, then the headline word by word, then the meta row —
-         each element blur-slides up into place on load */
+      /* Page entrance: the nav settles in first, then the hero intro, the headline
+         word by word, and the meta row — each blur-sliding into place on load */
+      const navLogo = document.querySelector('nav .logo');
+      const navRule = document.querySelector('nav .nav-rule');
+      const navLinksWrap = document.querySelector('nav .navlinks');
+      const navLinks = document.querySelectorAll('nav .navlinks a');
       const heroIntro = document.querySelector('.hero-intro');
       const heroHead = document.querySelector('.hero .headline');
+      const metaRow = document.querySelector('.meta-row');
       const heroMeta = document.querySelectorAll('.meta-row > *');
-      if (heroIntro || heroHead || heroMeta.length) {
-        const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.12 });
-        if (heroIntro) heroTl.fromTo(heroIntro,
-          { autoAlpha: 0, y: 12, filter: 'blur(10px)' },
-          { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.9 }, 0);
-        if (heroHead) {
-          const hw = heroHead.textContent.trim().split(/\s+/);
-          heroHead.textContent = '';
-          hw.forEach((w, i) => {
-            const span = document.createElement('span');
-            span.className = 'hl-word';
-            span.textContent = w;
-            heroHead.appendChild(span);
-            if (i < hw.length - 1) heroHead.appendChild(document.createTextNode(' '));
-          });
-          gsap.set(heroHead, { autoAlpha: 1 });
-          heroTl.fromTo(heroHead.querySelectorAll('.hl-word'),
-            { autoAlpha: 0, y: 16, filter: 'blur(10px)' },
-            { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.7, stagger: 0.042 }, 0.22);
-        }
-        if (heroMeta.length) heroTl.fromTo(heroMeta,
-          { autoAlpha: 0, y: 10, filter: 'blur(8px)' },
-          { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.7, stagger: 0.05 }, '>-0.3');
+
+      const loadTl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.2 });
+
+      if (navLogo) loadTl.fromTo(navLogo,
+        { autoAlpha: 0, y: -8, filter: 'blur(6px)' },
+        { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.9 }, 0);
+      if (navRule) loadTl.fromTo(navRule,
+        { autoAlpha: 0 }, { autoAlpha: 1, duration: 1.1 }, 0.1);
+      if (navLinks.length) {
+        gsap.set(navLinksWrap, { autoAlpha: 1 });
+        loadTl.fromTo(navLinks,
+          { autoAlpha: 0, y: -8, filter: 'blur(6px)' },
+          { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.8, stagger: 0.09 }, 0.12);
+      }
+
+      if (heroIntro) loadTl.fromTo(heroIntro,
+        { autoAlpha: 0, y: 14, filter: 'blur(10px)' },
+        { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 1.15 }, 0.4);
+
+      if (heroHead) {
+        const hw = heroHead.textContent.trim().split(/\s+/);
+        heroHead.textContent = '';
+        hw.forEach((w, i) => {
+          const span = document.createElement('span');
+          span.className = 'hl-word';
+          span.textContent = w;
+          heroHead.appendChild(span);
+          if (i < hw.length - 1) heroHead.appendChild(document.createTextNode(' '));
+        });
+        gsap.set(heroHead, { autoAlpha: 1 });
+        loadTl.fromTo(heroHead.querySelectorAll('.hl-word'),
+          { autoAlpha: 0, y: 18, filter: 'blur(10px)' },
+          { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.85, stagger: 0.05 }, 0.75);
+      }
+
+      if (heroMeta.length) {
+        gsap.set(metaRow, { autoAlpha: 1 });
+        loadTl.fromTo(heroMeta,
+          { autoAlpha: 0, y: 12, filter: 'blur(8px)' },
+          { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.9, stagger: 0.08 }, '>-0.45');
       }
 
       /* About process list: each row's hairline draws in, then the number
@@ -147,7 +169,7 @@
       });
     }
   } else {
-    document.querySelectorAll('.reveal, .hero-load').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+    document.querySelectorAll('.reveal, .hero-load, .nav-load').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
   }
 
   /* ---------- Resume modal ---------- */
