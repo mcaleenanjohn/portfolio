@@ -229,15 +229,8 @@
   .about-photo img{width:100%; height:100%; object-fit:cover;}
 
   .philosophy{text-align:center; margin-bottom:184px;}
-  .philosophy h3{
-    font-size:13px; font-weight:400; letter-spacing:0.24em; text-transform:uppercase;
-    color:var(--accent); margin-bottom:40px;
-  }
-  .philosophy p{
-    font-size:clamp(30px,5.6vw,72px); font-weight:400; line-height:1.12;
-    letter-spacing:-0.01em; color:var(--ink); max-width:22ch; margin:0 auto;
-    text-wrap:balance;
-  }
+  .philosophy h3{font-size:clamp(24px,3vw,40px); font-weight:400; margin-bottom:24px;}
+  .philosophy p{font-size:clamp(28px,5vw,64px); font-weight:400; line-height:1.2;}
 
   .process-list{max-width:889px; margin:0 auto; display:flex; flex-direction:column;}
   .process-rule{height:1px; background:var(--line); transform-origin:left; will-change:transform;}
@@ -291,8 +284,11 @@
     white-space:nowrap; opacity:0; transition:opacity .2s ease; pointer-events:none;
   }
   .footer-copy.is-copied .footer-copy__toast{opacity:1;}
-  .footer-linkedin{font-size:clamp(17px,2.2vw,22px); color:var(--accent);}
-  .footer-bottom{margin-top:104px; font-size:12px; color:rgba(255,255,255,0.5); letter-spacing:0.05em;}
+  .footer-linkedin{font-size:clamp(18px,2.8vw,32px); color:var(--accent); line-height:1;}
+  .footer-bottom{
+    margin-top:104px; display:flex; justify-content:space-between; gap:16px;
+    font-size:12px; color:rgba(255,255,255,0.5); letter-spacing:0.05em;
+  }
 
   .reveal{opacity:0; transform:translateY(24px);}
   @media (prefers-reduced-motion: reduce){
