@@ -2,17 +2,20 @@
   const docEl = document.documentElement;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* Nav: solid-fill on scroll + rule doubles as a scroll-progress bar */
-  function onScroll() {
-    const y = window.scrollY;
-    nav.classList.toggle('scrolled', y > 20);
-    const max = docEl.scrollHeight - window.innerHeight;
-    const pct = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
-    nav.style.setProperty('--scroll', (pct * 100).toFixed(2) + '%');
+  /* Nav: solid-fill on scroll + rule doubles as a scroll-progress bar.
+     Case-study pages (per the Figma template) ship without the fixed nav. */
+  if (nav) {
+    const onScroll = () => {
+      const y = window.scrollY;
+      nav.classList.toggle('scrolled', y > 20);
+      const max = docEl.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
+      nav.style.setProperty('--scroll', (pct * 100).toFixed(2) + '%');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
-  onScroll();
 
   /* Custom "View" cursor over work thumbnails (fine pointers only) */
   if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
@@ -48,7 +51,7 @@
   /* Hero dot-grid: a canvas copy of the CSS texture that the cursor drags through.
      Progressive enhancement — without it the ::before grid stays as the texture. */
   (function heroDots() {
-    const hero = document.querySelector('.hero');
+    const hero = document.querySelector('.hero, .cs-hero');
     if (!hero || reduceMotion) return;
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
