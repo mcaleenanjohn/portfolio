@@ -143,12 +143,16 @@
      A canvas replaces ::before on fine pointers so the cursor can drag through it. */
   .hero::before{
     content:"";
-    position:absolute; inset:0; z-index:0; pointer-events:none;
+    position:absolute; top:0; bottom:0; left:50%; width:100vw; transform:translateX(-50%);
+    z-index:0; pointer-events:none;
     background-image:radial-gradient(circle at center, rgba(20,20,20,0.08) 1px, transparent 1.6px);
     background-size:20px 20px;
   }
   .hero.dots-live::before{opacity:0;}
-  .hero-dots{position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none;}
+  .hero-dots{
+    position:absolute; top:0; bottom:0; left:50%; width:100vw; transform:translateX(-50%);
+    z-index:0; pointer-events:none;
+  }
   .hero-intro, h1.headline, .meta-row{z-index:1;}
 
   @media (max-width:760px){

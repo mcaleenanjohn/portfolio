@@ -70,8 +70,9 @@
 
     function build() {
       const r = hero.getBoundingClientRect();
-      if (!r.width || !r.height) return;
-      cw = r.width; ch = r.height;
+      const vw = document.documentElement.clientWidth;
+      if (!vw || !r.height) return;
+      cw = vw; ch = r.height;   // grid spans the full viewport, not the capped hero
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = cw * dpr;
       canvas.height = ch * dpr;
@@ -131,23 +132,24 @@
       else { raf = null; }
     }
 
-    hero.addEventListener('pointermove', (e) => {
-      const r = hero.getBoundingClientRect();
+    window.addEventListener('pointermove', (e) => {
+      const r = canvas.getBoundingClientRect();
+      if (e.clientY < r.top || e.clientY > r.bottom) {
+        if (ptr.on) { ptr.on = false; if (!raf) raf = requestAnimationFrame(tick); }
+        return;
+      }
       ptr.x = e.clientX - r.left;
       ptr.y = e.clientY - r.top;
       if (!ptr.on) { ptr.px = ptr.x; ptr.py = ptr.y; }
       ptr.on = true;
       if (!raf) raf = requestAnimationFrame(tick);
     }, { passive: true });
-    hero.addEventListener('pointerleave', () => { ptr.on = false; });
+    window.addEventListener('blur', () => { ptr.on = false; });
 
-    if (window.ResizeObserver) {
-      new ResizeObserver(build).observe(hero);
-    } else {
-      window.addEventListener('resize', build);
-      build();
-    }
+    if (window.ResizeObserver) new ResizeObserver(build).observe(hero);
+    window.addEventListener('resize', build);
     window.addEventListener('load', build);
+    build();
   })();
 
   /* Scroll-reveal + parallax */
