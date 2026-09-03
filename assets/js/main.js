@@ -100,10 +100,11 @@
           if (i < words.length - 1) phQuote.appendChild(document.createTextNode(' '));
         });
         gsap.fromTo(phQuote.querySelectorAll('.ph-word'),
-          { opacity: 0.18, filter: 'blur(4px)' },
+          { opacity: 0.15, filter: 'blur(6px)' },
           {
-            opacity: 1, filter: 'blur(0px)', ease: 'none', stagger: { each: 1 },
-            scrollTrigger: { trigger: '.philosophy', start: 'top 85%', end: 'top 30%', scrub: 0.6 }
+            opacity: 1, filter: 'blur(0px)', ease: 'power2.out',
+            duration: 1, stagger: { each: 0.35 },
+            scrollTrigger: { trigger: '.philosophy', start: 'top 88%', end: 'top 22%', scrub: 1.2 }
           }
         );
       }
