@@ -297,8 +297,15 @@
   }
 
   .reveal{opacity:0; transform:translateY(24px);}
+
+  /* Hero entrance: elements start hidden, a load-time timeline blurs them in */
+  .hero-load{opacity:0;}
+  h1.headline .hl-word{display:inline-block;}
+
   @media (prefers-reduced-motion: reduce){
     .reveal{opacity:1; transform:none;}
+    .hero-load{opacity:1;}
+    h1.headline .hl-word{opacity:1; filter:none; transform:none;}
     .arrow{transition:none;}
     .view-cursor__inner{transition:opacity .2s ease;}
   }

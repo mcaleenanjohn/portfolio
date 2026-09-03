@@ -62,6 +62,36 @@
     if (!reduceMotion) {
       const through = (trigger) => ({ trigger: trigger, start: 'top bottom', end: 'bottom top', scrub: true });
 
+      /* Hero entrance: intro, then the headline word by word, then the meta row —
+         each element blur-slides up into place on load */
+      const heroIntro = document.querySelector('.hero-intro');
+      const heroHead = document.querySelector('.hero .headline');
+      const heroMeta = document.querySelectorAll('.meta-row > *');
+      if (heroIntro || heroHead || heroMeta.length) {
+        const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.12 });
+        if (heroIntro) heroTl.fromTo(heroIntro,
+          { autoAlpha: 0, y: 12, filter: 'blur(10px)' },
+          { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.9 }, 0);
+        if (heroHead) {
+          const hw = heroHead.textContent.trim().split(/\s+/);
+          heroHead.textContent = '';
+          hw.forEach((w, i) => {
+            const span = document.createElement('span');
+            span.className = 'hl-word';
+            span.textContent = w;
+            heroHead.appendChild(span);
+            if (i < hw.length - 1) heroHead.appendChild(document.createTextNode(' '));
+          });
+          gsap.set(heroHead, { autoAlpha: 1 });
+          heroTl.fromTo(heroHead.querySelectorAll('.hl-word'),
+            { autoAlpha: 0, y: 16, filter: 'blur(10px)' },
+            { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.7, stagger: 0.042 }, 0.22);
+        }
+        if (heroMeta.length) heroTl.fromTo(heroMeta,
+          { autoAlpha: 0, y: 10, filter: 'blur(8px)' },
+          { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.7, stagger: 0.05 }, '>-0.3');
+      }
+
       /* About process list: each row's hairline draws in, then the number
          drifts in from the margin and the copy rises — one small build per row */
       document.querySelectorAll('.process-list .process-step').forEach((step) => {
@@ -117,7 +147,7 @@
       });
     }
   } else {
-    document.querySelectorAll('.reveal').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+    document.querySelectorAll('.reveal, .hero-load').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
   }
 
   /* ---------- Resume modal ---------- */
