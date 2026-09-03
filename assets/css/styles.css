@@ -466,9 +466,11 @@
   .cs-band--warm{background:var(--bg-about);}
   .cs-band--plain{background:var(--bg);}
   .cs-band > .cs-in > * + *{margin-top:clamp(60px,9vw,98px);}
-  /* a heading + its own image read as one beat — close that gap */
+  /* a heading and the media / block it introduces read as one beat — close the gap */
   .cs-band > .cs-in > .cs-block + .cs-figure,
   .cs-band > .cs-in > .cs-block + .cs-grid3{margin-top:clamp(34px,4.5vw,52px);}
+  .cs-band > .cs-in > .cs-figure + .cs-figure{margin-top:clamp(20px,2.6vw,32px);}
+  .cs-band > .cs-in > .cs-figure + .cs-block--cont{margin-top:clamp(28px,3.6vw,42px);}
 
   /* ---------------- hero ----------------
      The hero is exactly as designed. On desktop it sticks to the top while
@@ -497,13 +499,15 @@
     display:grid; grid-template-columns:minmax(0,1fr) auto;
     gap:clamp(32px,6vw,80px); align-items:start;
   }
-  .cs-title{
-    font-size:clamp(40px,6vw,64px); font-weight:400; line-height:1.02;
-    letter-spacing:-0.018em; color:var(--ink); max-width:16ch; text-wrap:balance;
+  /* small tracked label — hero eyebrow and section labels share it */
+  .cs-label{
+    display:block; font-size:13px; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--body);
   }
-  .cs-title__sub{
-    margin-top:clamp(16px,1.6vw,20px); max-width:34ch;
-    font-size:clamp(17px,1.5vw,20px); line-height:1.4; color:var(--body);
+  .cs-label + .cs-title{margin-top:clamp(14px,1.8vw,20px);}
+  .cs-title{
+    font-size:clamp(29px,4.2vw,46px); font-weight:400; line-height:1.13;
+    letter-spacing:-0.016em; color:var(--ink); max-width:24ch; text-wrap:balance;
   }
   .cs-spec{display:grid; gap:clamp(18px,2vw,24px);}
   .cs-spec div{display:flex; flex-direction:column; gap:7px;}
@@ -532,9 +536,10 @@
      Every run of text — headings, 24px subtitle, body, the stacked
      "Overview / The problem" pair, and the 2-up stat grid — funnels
      down one centred 800px column. Only images break to full width. */
-  .cs-block, .cs-pair, .cs-note{max-width:800px; margin-inline:auto;}
+  .cs-block, .cs-pair, .cs-note, .cs-stats{max-width:800px; margin-inline:auto;}
 
   .cs-block > * + *{margin-top:clamp(14px,1.7vw,18px);}
+  .cs-block > .cs-label + .cs-block__h{margin-top:clamp(10px,1.4vw,14px);}
   .cs-block__h{
     font-size:clamp(27px,3.4vw,40px); font-weight:400; line-height:1.1;
     letter-spacing:-0.014em; color:var(--ink);
@@ -545,6 +550,9 @@
   .cs-block__body{font-size:clamp(16px,1.35vw,18px); line-height:1.58; color:var(--body);}
   .cs-block__body + .cs-block__body{margin-top:0.9em;}
   .cs-block__body b, .cs-block__body strong{color:var(--ink); font-weight:400;}
+  /* .cs-point — a label-led body line; a touch more air than a plain paragraph */
+  .cs-block > * + .cs-point{margin-top:clamp(20px,2.6vw,30px);}
+  .cs-point + .cs-point{margin-top:clamp(16px,2vw,24px);}
   .cs-block > * + .cs-stats{margin-top:clamp(28px,3.4vw,40px);}
   .cs-block > .cs-stats + .cs-note{margin-top:clamp(20px,2.4vw,28px);}
   .cs-note{font-size:clamp(14px,1.15vw,15.5px); line-height:1.55; color:var(--body);}
@@ -576,11 +584,37 @@
   .cs-grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,1.6vw,22px); align-items:start;}
   .cs-grid3 .cs-figure figcaption{margin-top:12px; font-size:13px;}
 
+  /* ---------------- media placeholders ----------------
+     Each slot is a labelled box holding its own identifier. To drop in the
+     real asset, replace the placeholder element with a plain media element:
+       image  →  <div class="cs-figure__media"><img src="…" alt="…"></div>
+       video  →  <div class="cs-figure__media"><video class="cs-video" autoplay muted
+                    loop playsinline poster="…"><source src="…" type="video/mp4"></video></div>
+     (for the hero, the wrapper class is .cs-hero-media). Then delete the
+     --ph modifier and the inline aspect-ratio. */
+  .cs-figure__media--ph, .cs-hero-media--ph{
+    display:flex; align-items:center; justify-content:center;
+    background:#e7e3dd; box-shadow:inset 0 0 0 1px rgba(20,20,20,0.16);
+  }
+  .cs-ph-label{
+    font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--body); text-align:center; line-height:2.1; padding:1em;
+  }
+  .cs-ph-label b{color:var(--ink); font-weight:400;}
+  .cs-ph-label small{
+    display:block; margin-top:0.4em; font-size:11px; letter-spacing:0.03em;
+    text-transform:none; opacity:0.75;
+  }
+  .cs-video{width:100%; height:auto; display:block;}
+
   /* ---------------- stat grid : 2-up inside the reading column ---------------- */
   .cs-stats{
     display:grid; grid-template-columns:1fr 1fr;
     column-gap:clamp(16px,2vw,24px); row-gap:clamp(30px,4vw,40px);
   }
+  /* --rows : a single stacked column, for findings that carry a sentence each */
+  .cs-stats--rows{grid-template-columns:1fr; row-gap:clamp(32px,4.5vw,44px);}
+  .cs-stats--rows .cs-stat dd{max-width:62ch;}
   .cs-stat dt{
     font-size:clamp(30px,3.4vw,40px); font-weight:400; line-height:1;
     letter-spacing:-0.02em; color:var(--ink); font-feature-settings:"tnum";
