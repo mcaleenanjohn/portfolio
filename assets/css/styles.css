@@ -230,14 +230,23 @@
   .philosophy h3{font-size:clamp(24px,3vw,40px); font-weight:400; margin-bottom:24px;}
   .philosophy p{font-size:clamp(28px,5vw,64px); font-weight:400; line-height:1.2;}
 
-  .process-grid{display:flex; gap:24px; filter:drop-shadow(0 4px 25px rgba(0,0,0,0.08));}
-  .process-card{background:var(--card); flex:1; padding:32px; display:flex; flex-direction:column; min-height:399px;}
-  .process-card .icon{width:40px; height:40px; color:var(--accent); margin-bottom:98px;}
-  .process-card .icon svg{width:100%; height:100%;}
-  .process-top{display:flex; align-items:center; gap:7px; margin-bottom:15px;}
-  .process-num{font-size:24px; color:#333;}
-  .process-title{font-size:24px; color:#333;}
-  .process-card p{font-size:18px; color:var(--body); line-height:1.5;}
+  .process-list{border-bottom:1px solid var(--line);}
+  .process-step{
+    display:grid; grid-template-columns:96px 1fr; column-gap:48px;
+    padding:44px 0; border-top:1px solid var(--line);
+  }
+  .process-step__num{
+    font-size:clamp(40px,4vw,60px); line-height:1; color:var(--line);
+    font-feature-settings:"tnum"; align-self:start;
+  }
+  .process-step__body{max-width:660px;}
+  .process-step__title{
+    display:flex; align-items:center; gap:10px;
+    font-size:24px; font-weight:400; color:var(--ink); margin-bottom:16px;
+  }
+  .process-step__icon{display:inline-flex; color:var(--accent); flex-shrink:0;}
+  .process-step__icon svg{width:20px; height:20px; display:block;}
+  .process-step__body p{font-size:18px; color:var(--body); line-height:1.6;}
 
   @media (max-width:900px){
     .about-inner{padding:0 20px;}
@@ -246,8 +255,8 @@
     .about-text{width:100%;}
     .about-photo{width:100%; max-width:300px;}
     .philosophy{margin-bottom:80px;}
-    .process-grid{flex-direction:column;}
-    .process-card{min-height:0;}
+    .process-step{grid-template-columns:1fr; row-gap:14px; padding:36px 0;}
+    .process-step__num{font-size:34px;}
     .about-signature{display:none;}
   }
 
