@@ -88,12 +88,12 @@
       for (let i = 0; i < dots.length; i++) {
         const d = dots[i];
         if (d.e > 0.01) {
-          const s = (1.5 + d.e * 1.4) / 2;
-          ctx.fillStyle = 'rgba(20,20,20,' + (0.055 + d.e * 0.07).toFixed(3) + ')';
+          const s = (1.6 + d.e * 1.5) / 2;
+          ctx.fillStyle = 'rgba(20,20,20,' + (0.08 + d.e * 0.1).toFixed(3) + ')';
           ctx.fillRect(d.x - s, d.y - s, s * 2, s * 2);
         } else {
-          ctx.fillStyle = 'rgba(20,20,20,0.055)';
-          ctx.fillRect(d.x - 0.75, d.y - 0.75, 1.5, 1.5);
+          ctx.fillStyle = 'rgba(20,20,20,0.08)';
+          ctx.fillRect(d.x - 0.8, d.y - 0.8, 1.6, 1.6);
         }
       }
     }
