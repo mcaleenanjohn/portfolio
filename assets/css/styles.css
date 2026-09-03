@@ -441,133 +441,160 @@
   }
 
   /* ============ CASE STUDY (work/*.html) ============ */
-  /* Experience mode: the product work leads, the page recedes. Homepage language —
-     PP Neue Montreal, #F9F6F6, plain 400 headings, hairlines, squared media. */
+  /* An editorial monograph set in one voice — PP Neue Montreal, #F9F6F6,
+     the coral used only for markers and links. A marginal tag column,
+     a strict text measure, wide figures, hairlines. Scale does the shouting. */
   .cs-main{width:100%;}
+  .cs-shell{max-width:1180px; margin:0 auto; padding:0 clamp(22px,5vw,60px);}
 
-  /* section heading + chronological beat mark */
-  .cs-h{font-size:clamp(32px,4.2vw,54px); font-weight:400; line-height:1.06; letter-spacing:-0.028em; color:var(--ink); max-width:19ch; text-wrap:balance;}
-  .cs-h .cs-h__no{color:var(--accent); margin-right:0.5em; font-feature-settings:"tnum"; letter-spacing:0;}
-  .cs-subhead{font-size:clamp(19px,1.8vw,23px); font-weight:400; color:var(--ink); letter-spacing:-0.01em;}
-
-  /* ---- hero ---- */
-  .cs-hero{padding:clamp(148px,17vh,208px) 0 0;}
-  .cs-hero .cs-col{padding-top:0; padding-bottom:0;}
-  .cs-hero .cs-col > *{max-width:none;}
-  .cs-backlink{display:inline-block; font-size:15px; color:var(--accent); margin-bottom:clamp(40px,7vw,72px);}
-  .cs-hero h1{font-size:clamp(46px,7vw,96px); font-weight:400; line-height:1.02; letter-spacing:-0.025em;}
-  .cs-hero__sub{margin-top:22px; max-width:42ch; font-size:clamp(19px,2vw,25px); line-height:1.4; color:var(--body);}
-  .cs-meta{
-    margin-top:clamp(40px,5vw,60px); padding-top:22px; border-top:1px solid var(--line);
-    display:grid; grid-template-columns:repeat(4,1fr); gap:20px 32px;
+  /* ---------------- hero ---------------- */
+  .cs-hero{padding-top:clamp(132px,19vh,208px);}
+  .cs-back{display:inline-block; font-size:14px; letter-spacing:0.01em; color:var(--accent); margin-bottom:clamp(48px,9vw,96px);}
+  .cs-title{
+    font-size:clamp(52px,10.5vw,132px); font-weight:400; line-height:0.92;
+    letter-spacing:-0.046em; color:var(--ink); text-indent:-0.03em;
   }
-  .cs-meta div{display:flex; flex-direction:column; gap:7px;}
-  .cs-meta dt{font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--body);}
-  .cs-meta dd{font-size:15px; line-height:1.35; color:var(--ink);}
+  .cs-title__sub{
+    margin-top:clamp(22px,2.8vw,36px); max-width:26ch;
+    font-size:clamp(19px,2.05vw,26px); line-height:1.36; letter-spacing:-0.012em; color:var(--body);
+  }
+  .cs-spec{
+    margin-top:clamp(48px,6.5vw,84px); padding-top:clamp(18px,2vw,24px);
+    border-top:1px solid var(--line);
+    display:grid; grid-template-columns:repeat(4,1fr); gap:26px 32px;
+  }
+  .cs-spec div{display:flex; flex-direction:column; gap:9px;}
+  .cs-spec dt{font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--body);}
+  .cs-spec dd{font-size:15px; line-height:1.35; color:var(--ink); max-width:15ch;}
+  .cs-hero__img{
+    margin-top:clamp(52px,7vw,92px); width:100vw; margin-left:calc(50% - 50vw);
+    background:#EBE7E1; border-block:1px solid var(--line);
+  }
+  .cs-hero__img img{width:100%; display:block;}
 
-  /* ---- big product stage (the point of the page) ---- */
-  .cs-stage{width:min(1500px,92vw); margin:clamp(48px,6vw,76px) auto;}
-  .cs-stage--bleed{width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);}
-  .cs-stage--hero{margin-top:clamp(36px,4.5vw,52px); margin-bottom:0;}
-  .cs-stage figure{margin:0;}
-  .cs-shot{overflow:hidden; background:#e4e1db; border:1px solid var(--line);}
-  .cs-stage--bleed .cs-shot{border-left:0; border-right:0;}
+  /* ---------------- section : one left edge for everything, figures run widest ---------------- */
+  .cs-sec{
+    max-width:1180px; margin:0 auto;
+    padding:clamp(70px,10vw,132px) clamp(22px,5vw,60px);
+    border-top:1px solid var(--line);
+  }
+  .cs-sec:first-of-type{border-top:0;}
+  .cs-sec > * + *{margin-top:clamp(46px,6.2vw,84px);}
+  .cs-loc{
+    font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--body);
+    display:flex; gap:0.75em; align-items:baseline;
+    margin-bottom:clamp(34px,4.6vw,54px);
+  }
+  .cs-loc + *{margin-top:0 !important;}
+  .cs-loc b{color:var(--accent); font-weight:400; font-feature-settings:"tnum";}
+  .cs-b{min-width:0;}
+  .cs-fig, .cs-ledger, .cs-band{min-width:0;}
+
+  /* the section-opening statement doubles as its heading */
+  .cs-say{
+    font-size:clamp(28px,4.3vw,50px); font-weight:400; line-height:1.06;
+    letter-spacing:-0.033em; color:var(--ink); max-width:19ch; text-wrap:pretty;
+  }
+  .cs-say .q{color:var(--body);}
+  .cs-say + *{margin-top:clamp(26px,3.4vw,44px);}
+
+  /* prose — one strict measure */
+  .cs-prose{max-width:60ch;}
+  .cs-prose > * + *{margin-top:1.05em;}
+  .cs-prose p, .cs-p{font-size:clamp(16px,1.12vw,17.5px); line-height:1.66; color:var(--body); max-width:60ch;}
+  .cs-prose b, .cs-p b, .cs-prose strong{font-weight:400; color:var(--ink);}
+  .cs-lead{font-size:clamp(19px,2vw,23px); line-height:1.42; letter-spacing:-0.012em; color:var(--ink); max-width:38ch;}
+  .cs-b > .cs-p + .cs-band{margin-top:clamp(40px,5vw,64px);}
+
+  .cs-h3{font-size:clamp(19px,2.1vw,24px); font-weight:400; letter-spacing:-0.016em; color:var(--ink);}
+  .cs-h3 + p{margin-top:12px;}
+  .cs-b > * + .cs-h3{margin-top:clamp(40px,5vw,64px);}
+
+  /* research insights — ink claim over grey detail, full-width hairline between */
+  .cs-notes{margin-top:clamp(28px,3.4vw,40px); border-top:1px solid var(--line);}
+  .cs-notes li{list-style:none; padding:clamp(22px,2.8vw,34px) 0; border-bottom:1px solid var(--line);}
+  .cs-notes b{display:block; max-width:56ch; font-weight:400; color:var(--ink); font-size:clamp(17px,1.55vw,21px); letter-spacing:-0.016em; margin-bottom:8px;}
+  .cs-notes span{display:block; max-width:56ch; font-size:15px; line-height:1.58; color:var(--body);}
+
+  /* plain accent-tick list */
+  .cs-ul{margin-top:clamp(20px,2.4vw,28px); display:flex; flex-direction:column; gap:14px;}
+  .cs-ul li{list-style:none; position:relative; padding-left:26px; font-size:clamp(15px,1.1vw,16.5px); line-height:1.55; color:var(--ink); max-width:52ch;}
+  .cs-ul li b{font-weight:400;}
+  .cs-ul li::before{content:""; position:absolute; left:0; top:0.66em; width:8px; height:1px; background:var(--accent);}
+
+  /* ---------------- figure : "Fig." mark, shot, caption — all in the body column ---------------- */
+  .cs-fig{margin:0;}
+  .cs-fig__m p{font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:14px;}
+  .cs-fig figcaption{margin-top:15px; font-size:13px; line-height:1.55; color:var(--body); max-width:56ch;}
+  .cs-fig figcaption b{color:var(--ink); font-weight:400;}
+  .cs-shot{background:#EBE7E1; border:1px solid var(--line); overflow:hidden;}
   .cs-shot img{width:100%; display:block;}
-  /* every caption sits at the body's left margin, whatever the image width */
-  .cs-cap{max-width:1440px; margin:clamp(14px,1.6vw,20px) auto 0; padding:0 clamp(24px,6vw,88px);}
-  .cs-cap p{max-width:560px; font-size:14px; line-height:1.55; color:var(--body);}
-  .cs-cap b{font-weight:400; color:var(--ink);}
+  /* three supporting shots share the body column */
+  .cs-triad{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,1.6vw,22px);}
+  .cs-triad figure{margin:0;}
+  .cs-triad figcaption{margin-top:12px; font-size:12.5px; line-height:1.5; color:var(--body);}
+  .cs-triad figcaption b{color:var(--ink); font-weight:400;}
 
-  /* triptych within a stage */
-  .cs-triptych{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,1.8vw,28px);}
-  .cs-triptych figure{margin:0;}
-  .cs-triptych .cs-cap{padding:0; margin-top:14px; max-width:none;}
-  .cs-triptych .cs-cap p{max-width:none; font-size:13px;}
-
-  /* ---- text block: content hangs off the left margin, whitespace to the right ---- */
-  .cs-block{
-    max-width:1440px; margin:0 auto;
-    padding:clamp(48px,6.5vw,84px) clamp(24px,6vw,88px);
+  /* ---------------- feedback ledger : big numeral, finding beneath, full-width hairlines ---------------- */
+  .cs-ledger{border-top:1px solid var(--line);}
+  .cs-ledger li{list-style:none; padding:clamp(26px,3.4vw,42px) 0; border-bottom:1px solid var(--line);}
+  .cs-ledger__n{
+    display:block; font-size:clamp(44px,5.8vw,82px); line-height:0.82; letter-spacing:-0.05em;
+    color:var(--ink); font-feature-settings:"tnum"; margin-bottom:14px;
   }
-  .cs-block--rule{border-top:1px solid var(--line);}
-  .cs-hero + .cs-block{padding-top:clamp(56px,8vw,104px);}
-  .cs-block__head{margin-bottom:clamp(28px,3.8vw,48px);}
-  .cs-block__head:empty{display:none;}
-  .cs-block__body{min-width:0;}
-  .cs-prose{max-width:648px;}
-  .cs-prose > * + *{margin-top:16px;}
-  .cs-prose p, p.cs-prose{font-size:clamp(16px,1.2vw,18px); line-height:1.62; color:var(--body); max-width:648px;}
-  .cs-prose b, .cs-prose strong, p.cs-prose b{font-weight:400; color:var(--ink);}
-  .cs-lead, .cs-prose p.cs-lead, .cs-prose .cs-lead{
-    font-size:clamp(23px,3vw,34px); line-height:1.26; color:var(--ink); letter-spacing:-0.02em; max-width:22ch;
+  .cs-ledger__n i{font-style:normal; font-size:0.3em; letter-spacing:0; color:var(--body); margin-left:0.06em;}
+  .cs-ledger__t{display:block; max-width:40ch; font-size:clamp(15px,1.15vw,16.5px); line-height:1.55; color:var(--body);}
+  .cs-ledger__t b{color:var(--ink); font-weight:400;}
+  .cs-ledger__more{
+    list-style:none; border:0; padding-top:clamp(20px,2.4vw,30px);
+    font-size:14px; line-height:1.6; color:var(--body); max-width:52ch;
   }
-  .cs-prose > .cs-lead + *{margin-top:clamp(20px,2.4vw,30px);}
-  /* standalone framing line between stages */
-  .cs-col{max-width:1440px; margin:0 auto; padding:clamp(40px,5vw,64px) clamp(24px,6vw,88px);}
-  .cs-col .cs-lead{max-width:26ch; font-size:clamp(24px,3.4vw,40px);}
 
-  /* inline insight list — ink lead, grey detail, no cards */
-  .cs-insights{display:flex; flex-direction:column; gap:clamp(22px,2.6vw,34px); margin-top:8px; max-width:600px;}
-  .cs-insights li{list-style:none;}
-  .cs-insights b{display:block; font-weight:400; color:var(--ink); font-size:clamp(17px,1.35vw,20px); letter-spacing:-0.01em; margin-bottom:6px;}
-  .cs-insights span{font-size:15px; line-height:1.56; color:var(--body);}
-
-  /* plain accent-dot list */
-  .cs-list{display:flex; flex-direction:column; gap:12px; margin-top:6px; max-width:600px;}
-  .cs-list li{list-style:none; position:relative; padding-left:22px; font-size:clamp(15px,1.1vw,16px); line-height:1.56; color:var(--ink);}
-  .cs-list li b{font-weight:400;}
-  .cs-list li::before{content:""; position:absolute; left:0; top:0.62em; width:5px; height:5px; border-radius:50%; background:var(--accent);}
-
-  /* ---- findings: big numerals stated as facts, sentence beneath ---- */
-  .cs-findings{margin-top:clamp(32px,4.2vw,56px); display:flex; flex-direction:column; gap:clamp(30px,4vw,52px); max-width:600px;}
-  .cs-finding__n{display:block; font-size:clamp(52px,6.4vw,80px); font-weight:400; line-height:0.86; letter-spacing:-0.04em; color:var(--ink); font-feature-settings:"tnum"; margin-bottom:12px;}
-  .cs-finding__n small{font-size:0.32em; letter-spacing:0; margin-left:0.05em; color:var(--body);}
-  .cs-finding__t{display:block; font-size:clamp(15px,1.2vw,17px); line-height:1.52; color:var(--body); max-width:42ch;}
-  .cs-finding__t b{font-weight:400; color:var(--ink);}
-  .cs-findings__more{margin-top:clamp(4px,1vw,10px); font-size:14px; line-height:1.6; color:var(--body); max-width:52ch;}
-
-  /* ---- result metrics: one confident line of numbers ---- */
-  .cs-metrics{
-    display:grid; grid-template-columns:repeat(4,1fr); gap:32px 28px; max-width:920px;
-    margin-top:clamp(34px,4vw,56px); padding-top:clamp(30px,3.4vw,44px); border-top:1px solid var(--line);
+  /* ---------------- result metrics : closing band across the body column ---------------- */
+  .cs-band{
+    padding-top:clamp(26px,3vw,40px); border-top:1px solid var(--ink);
+    display:grid; grid-template-columns:repeat(4,1fr); gap:24px clamp(20px,3vw,40px);
   }
-  .cs-metrics div{display:flex; flex-direction:column; gap:9px;}
-  .cs-metrics dt{font-size:clamp(40px,5.4vw,72px); font-weight:400; line-height:0.9; letter-spacing:-0.03em; color:var(--ink); font-feature-settings:"tnum";}
-  .cs-metrics dd{font-size:13.5px; line-height:1.4; color:var(--body); max-width:20ch;}
-
-  /* ---- pull quote (homepage philosophy treatment) ---- */
-  .cs-pull{max-width:1440px; margin:0 auto; padding:clamp(76px,12vw,140px) clamp(24px,6vw,88px); border-top:1px solid var(--line); text-align:center;}
-  .cs-pull p{
-    font-size:clamp(27px,4.2vw,52px); font-weight:400; line-height:1.22; letter-spacing:-0.015em;
-    color:var(--ink); max-width:17ch; margin:0 auto;
+  .cs-band div{display:flex; flex-direction:column; gap:13px;}
+  .cs-band dt{
+    font-size:clamp(34px,4.4vw,58px); line-height:0.86; letter-spacing:-0.04em;
+    color:var(--ink); font-feature-settings:"tnum";
   }
-  .cs-pull u{text-decoration:none; box-shadow:inset 0 -0.09em 0 var(--accent);}
-  .cs-pull cite{display:block; margin-top:24px; font-style:normal; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--body);}
+  .cs-band dd{font-size:11px; letter-spacing:0.13em; text-transform:uppercase; color:var(--body); max-width:15ch; line-height:1.42;}
+  .cs-watch{margin-top:clamp(30px,3.6vw,48px); font-size:13.5px; line-height:1.62; color:var(--body); max-width:60ch;}
 
-  /* ---- closing: read the full case study ---- */
-  .cs-outro{max-width:1440px; margin:0 auto; padding:clamp(88px,13vw,150px) clamp(24px,6vw,88px); border-top:1px solid var(--line);}
-  .cs-outro h2{font-size:clamp(30px,4.6vw,58px); font-weight:400; line-height:1.08; letter-spacing:-0.02em; color:var(--ink); max-width:16ch;}
-  .cs-outro p{margin-top:20px; max-width:52ch; font-size:clamp(16px,1.3vw,19px); line-height:1.55; color:var(--body);}
-  .cs-outro a{display:inline-block; margin-top:32px; font-size:clamp(17px,1.5vw,20px); color:var(--accent);}
+  /* ---------------- pull quote : a held breath on the grid ---------------- */
+  .cs-quote{padding-top:clamp(56px,7vw,84px); padding-bottom:clamp(56px,7vw,84px);}
+  .cs-quote .cs-b p{
+    font-size:clamp(28px,4.3vw,52px); font-weight:400; line-height:1.14;
+    letter-spacing:-0.032em; color:var(--ink); max-width:16ch; text-wrap:pretty;
+  }
+  .cs-quote u{text-decoration:none; box-shadow:inset 0 -0.07em 0 var(--accent);}
+  .cs-quote cite{display:block; margin-top:clamp(22px,2.6vw,32px); font-style:normal; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--body);}
+
+  /* ---------------- close ---------------- */
+  .cs-close .cs-say{max-width:16ch;}
+  .cs-cta{display:inline-block; margin-top:clamp(28px,3.6vw,40px); font-size:clamp(16px,1.4vw,19px); color:var(--accent);}
 
   .cs-pager{
     position:static; background:none; backdrop-filter:none; -webkit-backdrop-filter:none;
-    max-width:1180px; margin:0 auto; padding:34px clamp(24px,6vw,88px) clamp(80px,10vw,116px);
+    max-width:1180px; margin:0 auto; padding:34px clamp(22px,5vw,58px) clamp(84px,11vw,124px);
     border-top:1px solid var(--line);
     display:flex; justify-content:space-between; gap:20px;
   }
-  .cs-pager a{font-size:15px; color:var(--ink);}
+  .cs-pager a{font-size:14.5px; color:var(--ink);}
   .cs-pager a:hover{color:var(--accent);}
   .cs-pager__next{margin-left:auto; text-align:right;}
 
-  @media (max-width:860px){
-    .cs-block{grid-template-columns:1fr; gap:18px; padding-top:clamp(44px,10vw,64px); padding-bottom:clamp(44px,10vw,64px);}
-    .cs-meta{grid-template-columns:repeat(2,1fr); gap:22px 24px;}
-    .cs-notes{grid-template-columns:1fr; gap:16px;}
-    .cs-metrics{grid-template-columns:repeat(2,1fr); gap:32px 20px;}
-    .cs-triptych{grid-template-columns:1fr; gap:20px;}
-    .cs-triptych .cs-cap{margin-bottom:8px;}
-    .cs-lead, .cs-prose .cs-lead{max-width:none;}
-    .cs-finding{grid-template-columns:1fr; gap:6px;}
-    .cs-finding__n{font-size:clamp(44px,13vw,60px);}
+  /* ---------------- responsive ---------------- */
+  @media (max-width:820px){
+    .cs-sec > * + *{margin-top:clamp(36px,8vw,56px);}
+    .cs-triad{grid-template-columns:1fr; gap:28px;}
+    .cs-band{grid-template-columns:repeat(2,1fr); gap:32px 24px;}
+    .cs-spec{grid-template-columns:repeat(2,1fr); gap:24px 28px;}
+    .cs-say, .cs-quote .cs-b p{max-width:none;}
+    .cs-ledger li{max-width:none;}
+  }
+  @media (max-width:440px){
+    .cs-band{grid-template-columns:1fr; gap:26px;}
   }
