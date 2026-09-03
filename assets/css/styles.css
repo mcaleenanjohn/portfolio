@@ -230,7 +230,7 @@
   .philosophy h3{font-size:clamp(24px,3vw,40px); font-weight:400; margin-bottom:24px;}
   .philosophy p{font-size:clamp(28px,5vw,64px); font-weight:400; line-height:1.2;}
 
-  .process-list{border-bottom:1px solid var(--line);}
+  .process-list{max-width:889px; margin:0 auto; border-bottom:1px solid var(--line);}
   .process-step{
     display:grid; grid-template-columns:96px 1fr; column-gap:48px;
     padding:44px 0; border-top:1px solid var(--line);
@@ -239,7 +239,7 @@
     font-size:clamp(40px,4vw,60px); line-height:1; color:var(--line);
     font-feature-settings:"tnum"; align-self:start;
   }
-  .process-step__body{max-width:660px;}
+  .process-step__body{max-width:745px;}
   .process-step__title{
     display:flex; align-items:center; gap:10px;
     font-size:24px; font-weight:400; color:var(--ink); margin-bottom:16px;
