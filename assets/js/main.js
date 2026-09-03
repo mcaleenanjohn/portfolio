@@ -45,6 +45,111 @@
     });
   }
 
+  /* Hero dot-grid: a canvas copy of the CSS texture that the cursor drags through.
+     Progressive enhancement — without it the ::before grid stays as the texture. */
+  (function heroDots() {
+    const hero = document.querySelector('.hero');
+    if (!hero || reduceMotion) return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.className = 'hero-dots';
+    canvas.setAttribute('aria-hidden', 'true');
+    hero.prepend(canvas);
+    hero.classList.add('dots-live');
+    const ctx = canvas.getContext('2d');
+
+    const GAP = 20;      // grid spacing (matches the CSS texture)
+    const RADIUS = 95;   // cursor influence radius
+    const PUSH = 13;     // max repel distance
+    const DRAG = 0.22;   // how much of the pointer's motion the dots carry
+    const EASE = 0.12;   // spring-back per frame
+
+    let cw = 0, ch = 0, dots = [], raf = null, idle = 0;
+    const ptr = { x: -999, y: -999, px: -999, py: -999, vx: 0, vy: 0, on: false };
+
+    function build() {
+      const r = hero.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      cw = r.width; ch = r.height;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = cw * dpr;
+      canvas.height = ch * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      dots = [];
+      for (let y = GAP; y < ch; y += GAP) {
+        for (let x = GAP; x < cw; x += GAP) dots.push({ hx: x, hy: y, x: x, y: y, e: 0 });
+      }
+      render();
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, cw, ch);
+      for (let i = 0; i < dots.length; i++) {
+        const d = dots[i];
+        if (d.e > 0.01) {
+          const s = (1.5 + d.e * 1.4) / 2;
+          ctx.fillStyle = 'rgba(20,20,20,' + (0.055 + d.e * 0.07).toFixed(3) + ')';
+          ctx.fillRect(d.x - s, d.y - s, s * 2, s * 2);
+        } else {
+          ctx.fillStyle = 'rgba(20,20,20,0.055)';
+          ctx.fillRect(d.x - 0.75, d.y - 0.75, 1.5, 1.5);
+        }
+      }
+    }
+
+    function tick() {
+      ptr.vx = Math.max(-40, Math.min(40, ptr.x - ptr.px));
+      ptr.vy = Math.max(-40, Math.min(40, ptr.y - ptr.py));
+      ptr.px = ptr.x; ptr.py = ptr.y;
+
+      let awake = false;
+      for (let i = 0; i < dots.length; i++) {
+        const d = dots[i];
+        let tx = d.hx, ty = d.hy, energy = 0;
+        if (ptr.on) {
+          const dx = d.hx - ptr.x, dy = d.hy - ptr.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < RADIUS) {
+            const f = (1 - dist / RADIUS);
+            const w = f * f;
+            const inv = dist || 1;
+            tx += (dx / inv) * PUSH * w + ptr.vx * DRAG * w;
+            ty += (dy / inv) * PUSH * w + ptr.vy * DRAG * w;
+            energy = w;
+          }
+        }
+        d.x += (tx - d.x) * EASE;
+        d.y += (ty - d.y) * EASE;
+        d.e += (energy - d.e) * EASE;
+        if (Math.abs(d.x - d.hx) > 0.06 || Math.abs(d.y - d.hy) > 0.06 || d.e > 0.01) awake = true;
+      }
+      render();
+
+      if (awake || ptr.on) { idle = 0; raf = requestAnimationFrame(tick); }
+      else if (idle++ < 12) { raf = requestAnimationFrame(tick); }
+      else { raf = null; }
+    }
+
+    hero.addEventListener('pointermove', (e) => {
+      const r = hero.getBoundingClientRect();
+      ptr.x = e.clientX - r.left;
+      ptr.y = e.clientY - r.top;
+      if (!ptr.on) { ptr.px = ptr.x; ptr.py = ptr.y; }
+      ptr.on = true;
+      if (!raf) raf = requestAnimationFrame(tick);
+    }, { passive: true });
+    hero.addEventListener('pointerleave', () => { ptr.on = false; });
+
+    if (window.ResizeObserver) {
+      new ResizeObserver(build).observe(hero);
+    } else {
+      window.addEventListener('resize', build);
+      build();
+    }
+    window.addEventListener('load', build);
+  })();
+
   /* Scroll-reveal + parallax */
   if (window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
