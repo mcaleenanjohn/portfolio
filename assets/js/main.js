@@ -250,3 +250,34 @@
       if (ev.target.closest('[data-close]')) close();
     });
   })();
+
+  /* ---------- Copy-to-clipboard (footer email) ---------- */
+  document.querySelectorAll('[data-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const text = btn.getAttribute('data-copy');
+      let ok = false;
+      try {
+        await navigator.clipboard.writeText(text);
+        ok = true;
+      } catch (e) {
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+          document.body.appendChild(ta);
+          ta.select();
+          ok = document.execCommand('copy');
+          document.body.removeChild(ta);
+        } catch (e2) { ok = false; }
+      }
+      if (!ok) return;
+      btn.classList.add('is-copied');
+      btn.setAttribute('aria-label', 'Email address copied');
+      clearTimeout(btn._copyTimer);
+      btn._copyTimer = setTimeout(() => {
+        btn.classList.remove('is-copied');
+        btn.setAttribute('aria-label', 'Copy email address');
+      }, 1800);
+    });
+  });
