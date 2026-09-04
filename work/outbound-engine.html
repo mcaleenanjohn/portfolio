@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Outbound — John McAleenan</title>
-<meta name="description" content="AI Outbound case study by John McAleenan, Senior Product Designer.">
+<meta name="description" content="Case study: redesigning HoneyBook's AI-powered outbound so personalized outreach feels human, not automated. By John McAleenan, Senior Product Designer.">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -30,10 +30,277 @@
   </div>
 </nav>
 
-<main class="wrap" style="padding-top:180px; padding-bottom:140px; min-height:70vh;">
-  <p class="case-desc reveal" style="margin-bottom:24px;"><a href="../index.html#work" style="color:var(--accent);">← Back to work</a></p>
-  <h1 class="section-head reveal" style="margin-bottom:16px;">AI Outbound</h1>
-  <p class="case-desc reveal">Case study coming soon.</p>
+<main class="cs cs-main">
+
+  <!--
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  MEDIA: built from the portfolio deck (AI-Powered Outbound Engine,   │
+    │  pp. 22–37). Sections without a clean, non-duplicate asset stay      │
+    │  text-only, per the brief.                                           │
+    │                                                                     │
+    │   HERO                images/outbound-engine-case-cover.png (repo)   │
+    │   WHAT WE BUILT       images/outbound-engine/what-we-built.jpg       │
+    │   THE PROBLEM         images/outbound-engine/inherited-landing-page  │
+    │   EMAIL DESIGN        images/outbound-engine/email-refined.jpg       │
+    │   EMAIL REFINEMENT    images/outbound-engine/email-direction.jpg     │
+    │   CLAUDE CODE         images/outbound-engine/claude-code-prototype   │
+    │   FINAL DESIGN        video/outbound-engine/final-design.mp4 (+ctrl) │
+    │                                                                     │
+    │  Text-only: The shift, Landing page, IA + Figma, Shaping the        │
+    │  direction, Key design decisions, Handoff + QA, Early results.       │
+    └─────────────────────────────────────────────────────────────────────┘
+  -->
+
+  <!-- ============ HERO ============ -->
+  <div class="cs-herostack">
+  <header class="cs-hero">
+    <div class="cs-in">
+      <a class="cs-back" href="../index.html#work">← Back to work</a>
+      <div class="cs-hero__row">
+        <div>
+          <p class="cs-label">AI Outbound</p>
+          <h1 class="cs-title">Redesigning personalized outreach to feel human, not automated.</h1>
+        </div>
+        <dl class="cs-spec">
+          <div><dt>Role</dt><dd>End-to-end product design</dd></div>
+          <div><dt>Timeline</dt><dd>June 2026</dd></div>
+          <div><dt>Team</dt><dd>Product, Marketing, Engineering</dd></div>
+          <div><dt>Company</dt><dd>HoneyBook</dd></div>
+        </dl>
+      </div>
+      <div class="cs-hero__tags">
+        <ul>
+          <li>AI</li>
+          <li>Product design</li>
+          <li>Growth</li>
+        </ul>
+        <span class="cs-rule" aria-hidden="true"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MEDIA: HERO. The final personalized outbound experience. -->
+  <div class="cs-hero-media" data-media="HERO">
+    <img src="../assets/images/outbound-engine-case-cover.png" alt="The final AI Outbound landing page: a personalized, deck-style HoneyBook page addressed to a named recipient.">
+  </div>
+  </div><!-- /.cs-herostack -->
+
+  <!-- ============ STORY ============ -->
+  <section class="cs-band cs-band--warm">
+    <div class="cs-in">
+
+      <!-- OVERVIEW -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Overview</p>
+        <h2 class="cs-block__h">HoneyBook needed a way to reach high-value businesses that weren't actively shopping for new software.</h2>
+        <p class="cs-block__body">I designed an AI-powered email and landing page system that personalized outreach at scale while staying consultative, not creepy.</p>
+        <p class="cs-block__body cs-point"><b>My role</b><br>End-to-end product design: research, UX/UI, prototyping, and prompt engineering for AI-generated content.</p>
+        <p class="cs-block__body">I also designed the landing page as a deck: structured, scannable, and distraction-free. I rewrote the AI prompts to make cold outreach feel human.</p>
+        <p class="cs-block__body cs-point"><b>Objective</b><br>Increase acquisition and activation of proven ICP verticals by creating a scalable, AI-powered outbound motion that could simulate personalized, human-grade consultative outreach at scale.</p>
+      </div>
+
+      <!-- WHAT WE BUILT -->
+      <div class="cs-block reveal">
+        <p class="cs-label">What we built</p>
+        <h2 class="cs-block__h">An outbound system, not just an email.</h2>
+        <p class="cs-block__body">The system took existing ICP lead lists, enriched them to infer operational pain, and generated personalized email and landing page combinations.</p>
+        <p class="cs-block__body">The email created the opening.<br>The landing page continued the conversation.</p>
+        <p class="cs-block__body">Together, they created a more consultative path from cold outreach to product discovery.</p>
+      </div>
+      <!-- MEDIA: email + landing page system -->
+      <figure class="cs-figure reveal" data-media="WHAT-WE-BUILT">
+        <div class="cs-figure__media">
+          <img src="../assets/images/outbound-engine/what-we-built.jpg" alt="A generated pair side by side: a personalized cold email on the left and the personalized landing page it links to on the right.">
+        </div>
+        <figcaption>The generated pair. The email opens the conversation, the landing page continues it.</figcaption>
+      </figure>
+
+      <!-- THE PROBLEM -->
+      <div class="cs-block reveal">
+        <p class="cs-label">The problem</p>
+        <h2 class="cs-block__h">The original concept felt like AI was doing the selling.</h2>
+        <p class="cs-block__body">The development team had already built an initial landing page using AI.</p>
+        <p class="cs-block__body">It had three problems:<br>The design looked obviously AI-generated.<br>There was no meaningful interactivity or movement.<br>The personalization felt invasive.</p>
+      </div>
+      <!-- MEDIA: inherited / AI-generated landing page (BEFORE) -->
+      <figure class="cs-figure reveal" data-media="INHERITED-LP">
+        <div class="cs-figure__media">
+          <img src="../assets/images/outbound-engine/inherited-landing-page.jpg" alt="The initial AI-built landing page: a generic marketing layout with a bright purple hero and stock photography.">
+        </div>
+        <figcaption>The landing page the development team built with AI. This is the concept I inherited, not the final work.</figcaption>
+      </figure>
+      <div class="cs-block cs-block--cont reveal">
+        <p class="cs-block__body">Using someone's name in a traditional marketing page made the experience feel less like someone reaching out and more like surveillance.</p>
+        <p class="cs-block__body">This became the central design challenge: how do you make personalized outreach feel thoughtful rather than creepy?</p>
+      </div>
+
+      <!-- THE SHIFT -->
+      <div class="cs-block reveal">
+        <p class="cs-label">The shift</p>
+        <h2 class="cs-block__h">I wanted it to feel like a personalized deck, not a marketing page.</h2>
+        <p class="cs-block__body">Since we'd be surfacing personal data, the experience needed to feel intentional and custom.</p>
+        <p class="cs-block__body">I looked for formats that could make personalized information feel useful rather than invasive. Two inspirations shaped the direction:</p>
+        <p class="cs-block__body cs-point"><b>growth.design</b><br>Their case studies use a structured, modular format. Users move through slides, progress indicators show where they are, and the information is easy to scan. It feels more like an experience than marketing.</p>
+        <p class="cs-block__body cs-point"><b>Spotify Wrapped</b><br>They take personal data and present it in a way that's engaging and easy to navigate. The format respects the reader's time and makes the experience feel thoughtful.</p>
+      </div>
+
+      <!-- EMAIL DESIGN -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Email design</p>
+        <h2 class="cs-block__h">Lead with the pain, not the product.</h2>
+        <p class="cs-block__body">I shaped the email approach by reviewing the initial versions and providing direction on tone, structure, and pain mapping.</p>
+        <p class="cs-block__body">Design principles:<br>Pain-led, JTBD-oriented<br>Read like a founder or peer, not a SaaS team<br>Specific over impressive<br>Only use the recipient's name and inferred pain. No scraped personal data.</p>
+        <p class="cs-block__body">Four pain hooks:</p>
+        <p class="cs-block__body cs-point"><b>Efficiency gaps</b><br>"What would 30 fewer admin minutes per booking feel like?"</p>
+        <p class="cs-block__body cs-point"><b>Tool fragmentation</b><br>"Still quoting gigs in a spreadsheet?"</p>
+        <p class="cs-block__body cs-point"><b>Admin burden</b><br>"Chasing Venmo payments after every event?"</p>
+        <p class="cs-block__body cs-point"><b>Migration anxiety</b><br>"Switching feels risky. We can make it painless."</p>
+      </div>
+      <!-- MEDIA: personalized email example (final conversational tone) -->
+      <figure class="cs-figure reveal" data-media="EMAIL-DESIGN">
+        <div class="cs-figure__media">
+          <img src="../assets/images/outbound-engine/email-refined.jpg" alt="A finished personalized email in an inbox: subject 'Portfolio sharp, intake messy', a short conversational note that names one specific pain and links to a page.">
+        </div>
+        <figcaption>A finished hook. It names one real pain, offers a look, and doesn't push.</figcaption>
+      </figure>
+
+      <!-- EMAIL REFINEMENT -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Email refinement</p>
+        <h2 class="cs-block__h">The first version was too data-heavy.</h2>
+        <p class="cs-block__body">The initial emails all followed the same basic structure and forced the data into the message in ways that didn't feel human.</p>
+        <p class="cs-block__body">I shifted the approach from data-heavy to conversational.</p>
+        <p class="cs-block__body">The goal wasn't to prove how much we knew about someone. It was to show that we understood a real problem they might be experiencing.</p>
+      </div>
+      <!-- MEDIA: the data-heavy first drafts, marked up -->
+      <figure class="cs-figure reveal" data-media="EMAIL-REFINEMENT">
+        <div class="cs-figure__media">
+          <img src="../assets/images/outbound-engine/email-direction.jpg" alt="Two early AI-generated email drafts with red marks through the phrases that tried too hard or overused the recipient's data.">
+        </div>
+        <figcaption>The first pass. Same structure every time, with the data forced into every line.</figcaption>
+      </figure>
+
+      <!-- LANDING PAGE -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Landing page</p>
+        <h2 class="cs-block__h">Personalization needed a better container.</h2>
+        <p class="cs-block__body">The landing page carried the conversation forward from the email.</p>
+        <p class="cs-block__body">Instead of dropping someone onto a traditional marketing page filled with product claims, I designed it as a personalized deck.</p>
+        <p class="cs-block__body">The structure gave the experience a clear beginning, middle, and end while keeping the amount of information on screen intentionally focused.</p>
+      </div>
+
+      <!-- IA + FIGMA -->
+      <div class="cs-block reveal">
+        <p class="cs-label">IA + Figma</p>
+        <h2 class="cs-block__h">I designed the experience as a modular system.</h2>
+        <p class="cs-block__body">I mapped the user journey through the page with an eight-module structure.</p>
+        <p class="cs-block__body">Then I moved to Figma to build modular components that could be reused, personalized, and tested in code before engineering started.</p>
+      </div>
+
+      <!-- CLAUDE CODE -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Claude Code</p>
+        <h2 class="cs-block__h">I used code to validate the experience before engineering.</h2>
+        <p class="cs-block__body">I used Claude Code to validate the design before handing it to engineering.</p>
+        <p class="cs-block__body">I started with rough HTML to establish the foundation, then layered in parallax and deck-like interactions.</p>
+        <p class="cs-block__body">From there, I took each Figma module and iteratively refined them until I had a working prototype to share with the team.</p>
+        <p class="cs-block__body">The prototype made the interaction model tangible before engineering committed to the final build.</p>
+      </div>
+      <!-- MEDIA: Claude Code prototype -->
+      <figure class="cs-figure reveal" data-media="CLAUDE-CODE">
+        <div class="cs-figure__media">
+          <img src="../assets/images/outbound-engine/claude-code-prototype.jpg" alt="Claude Code building the landing page: an editor with a live preview of the personalized page and a running log of the edits made to each module.">
+        </div>
+        <figcaption>Refining the prototype in Claude Code, one module at a time.</figcaption>
+      </figure>
+
+      <!-- SHAPING THE DIRECTION -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Shaping the direction</p>
+        <h2 class="cs-block__h">I helped turn an early AI-generated concept into a more human, credible, and scalable growth experience.</h2>
+        <p class="cs-block__body cs-point"><b>Challenged the initial approach</b><br>Called out where the experience felt generic, overly personalized, and visibly AI-generated.</p>
+        <p class="cs-block__body cs-point"><b>Aligned the team on a stronger concept</b><br>Introduced the deck-like format and a consultative narrative that connected the email and landing page.</p>
+        <p class="cs-block__body cs-point"><b>Made the idea tangible</b><br>Built the interaction model in Claude Code, giving Product, Marketing, and Engineering a working vision to align around.</p>
+        <p class="cs-block__body cs-point"><b>Guided it through execution</b><br>Refined prompts, reviewed implementation, and protected the design intent through launch.</p>
+      </div>
+
+      <!-- KEY DESIGN DECISIONS -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Key design decisions</p>
+        <h2 class="cs-block__h">Every interaction had a job.</h2>
+        <p class="cs-block__body cs-point"><b>Scroll bar</b><br>Shows your position in the story. Gives momentum and makes the page feel finite rather than endless.</p>
+        <p class="cs-block__body cs-point"><b>Side navigation</b><br>Lets people jump to the sections that matter to them. Power users can skip ahead without losing the narrative.</p>
+        <p class="cs-block__body cs-point"><b>Parallax transitions</b><br>Creates depth as you scroll. Each section feels like turning a slide rather than reading a wall of text.</p>
+        <p class="cs-block__body cs-point"><b>Fixed bottom CTA</b><br>Keeps trial and demo accessible throughout the experience while supporting conversion and accessibility.</p>
+      </div>
+
+      <!-- HANDOFF + QA -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Handoff + QA</p>
+        <h2 class="cs-block__h">The design didn't stop at handoff.</h2>
+        <p class="cs-block__body">I handed off the working HTML from Claude Code with a detailed walkthrough demo.</p>
+        <p class="cs-block__body">As the team developed, I provided feedback through Loom. I recorded expected interactions, called out bugs, and showed exactly what needed to change.</p>
+        <p class="cs-block__body">I stayed close to implementation to keep the original design intent intact throughout the build.</p>
+      </div>
+
+      <!-- FINAL DESIGN -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Final design</p>
+        <h2 class="cs-block__h">A personalized growth experience that feels intentional.</h2>
+        <p class="cs-block__body">The final experience connected the personalized email and landing page into one continuous conversation.</p>
+        <p class="cs-block__body">The email earned attention.<br>The landing page continued the story.<br>The product gave the prospect a clear next step.</p>
+      </div>
+      <!-- MEDIA: strong final landing page (video) -->
+      <figure class="cs-figure reveal" data-media="FINAL-DESIGN">
+        <div class="cs-figure__media">
+          <video class="cs-video" autoplay muted loop playsinline controls preload="metadata"
+                 poster="../assets/video/outbound-engine/posters/final-design.jpg">
+            <source src="../assets/video/outbound-engine/final-design.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption>The same system generating for a different recipient.</figcaption>
+      </figure>
+
+      <!-- EARLY RESULTS -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Early results</p>
+        <h2 class="cs-block__h">The first test showed a strong signal.</h2>
+        <p class="cs-block__body">We launched a small batch test with 195 DJs to validate the approach before scaling.</p>
+        <p class="cs-block__body">The early numbers showed that the consultative, personalized strategy was resonating.</p>
+        <dl class="cs-stats">
+          <div class="cs-stat"><dt>195</dt><dd>Email sent</dd></div>
+          <div class="cs-stat"><dt>70</dt><dd>Opened emails</dd></div>
+          <div class="cs-stat"><dt>38.6%</dt><dd>Open rate</dd></div>
+          <div class="cs-stat"><dt>9</dt><dd>Landing page visitors</dd></div>
+          <div class="cs-stat"><dt>7</dt><dd>Email replies</dd></div>
+        </dl>
+        <p class="cs-block__body cs-point"><b>Impact</b><br>Strong email engagement signaled that the pain-led, consultative approach was resonating.</p>
+        <p class="cs-block__body cs-point"><b>Next steps</b><br>Expand to an additional DJ batch of 800 and proven ICP verticals.<br>Measure landing page conversion and trial-to-activation.<br>Track CAC against the paid baseline.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="cs-band cs-band--plain">
+    <div class="cs-in">
+      <div class="cs-block reveal">
+        <p class="cs-label">Full case study</p>
+        <h2 class="cs-block__h">Want to see how I got there?</h2>
+        <p class="cs-block__body">The full case study goes deeper into the strategy, email design, landing page explorations, AI prompting, prototyping, team alignment, and decisions behind the final experience.</p>
+        <!-- TODO: no AI Outbound case-study PDF exists in the repo yet. Path follows the floor-plans convention; drop the file at assets/outbound-engine-case-study.pdf to make this link live. -->
+        <a class="cs-cta" href="../assets/outbound-engine-case-study.pdf" target="_blank" rel="noopener">Read the full case study <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="cs-metarow" aria-label="Case study navigation">
+    <div class="cs-in">
+      <a href="../index.html#work">← Back to work</a>
+      <a href="floor-plans.html">Next: Floor plans →</a>
+    </div>
+  </nav>
+
 </main>
 
 <footer id="contact">

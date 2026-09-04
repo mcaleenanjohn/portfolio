@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Truss — John McAleenan</title>
-<meta name="description" content="Truss case study by John McAleenan, Senior Product Designer.">
+<meta name="description" content="Case study: from Creator Collective to Truss, a 0→1 product story of research, a marketplace experiment, a pivot, and the platform that found product-market fit. By John McAleenan, Senior Product Designer.">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
@@ -30,10 +30,325 @@
   </div>
 </nav>
 
-<main class="wrap" style="padding-top:180px; padding-bottom:140px; min-height:70vh;">
-  <p class="case-desc reveal" style="margin-bottom:24px;"><a href="../index.html#work" style="color:var(--accent);">← Back to work</a></p>
-  <h1 class="section-head reveal" style="margin-bottom:16px;">Truss</h1>
-  <p class="case-desc reveal">Case study coming soon.</p>
+<main class="cs cs-main">
+
+  <!--
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │  Truss — combined Creator Collective + Truss case study.             │
+    │  Creator Collective is not a separate project anymore: it's the      │
+    │  research / discovery / pivot phase of the Truss story.              │
+    │                                                                     │
+    │  MEDIA (curated from the original macca.me case studies):            │
+    │   HERO                  images/truss-project.png (repo, existing)    │
+    │   DESIGN SPRINT         images/truss/design-sprint-prototype.jpg     │
+    │   VALIDATION            images/truss/prototype-testing-flow.jpg      │
+    │   MVP1                  images/truss/mvp1-key-results-a.jpg + -b.jpg │
+    │   MVP2                  images/truss/mvp2-marketplace-landing.jpg    │
+    │   WHAT DIDN'T WORK      images/truss/early-concept.jpg               │
+    │   THE PIVOT             images/truss/pivot-instant-coaching-...jpg   │
+    │   TRUSS (core flow)     images/truss/truss-profile-services.jpg      │
+    │   BUILDING THE PRODUCT  images/truss/truss-mobile-services.jpg,      │
+    │                         images/truss/truss-payments.jpg              │
+    │   PRODUCT EXPLORATION   images/truss/truss-product-sketches.jpg      │
+    │   FINAL PRODUCT         images/truss/truss-final-product.jpg         │
+    │                                                                     │
+    │  Text-only: Overview, Initial direction, Outcome, Closing.           │
+    │  No quote block — nothing in the source material was a clean,        │
+    │  verbatim quote, so one wasn't invented.                             │
+    └─────────────────────────────────────────────────────────────────────┘
+  -->
+
+  <!-- ============ HERO ============ -->
+  <div class="cs-herostack">
+  <header class="cs-hero">
+    <div class="cs-in">
+      <a class="cs-back" href="../index.html#work">← Back to work</a>
+      <div class="cs-hero__row">
+        <div>
+          <p class="cs-label">Truss</p>
+          <h1 class="cs-title">A platform for experts to monetize their knowledge and experience.</h1>
+          <p class="cs-block__sub">Truss enables experts to monetize their knowledge and experience through instant advice and premium mentorship.</p>
+        </div>
+        <dl class="cs-spec">
+          <div><dt>Role</dt><dd>Lead Product Designer</dd></div>
+          <div><dt>Timeline</dt><dd>2021–2023</dd></div>
+          <div><dt>Team</dt><dd>Product, Engineering, Data Science, UX Research</dd></div>
+          <div><dt>Company</dt><dd>Endeavor</dd></div>
+        </dl>
+      </div>
+      <div class="cs-hero__tags">
+        <ul>
+          <li>0–1</li>
+          <li>Product design</li>
+          <li>Marketplace</li>
+        </ul>
+        <span class="cs-rule" aria-hidden="true"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MEDIA: HERO. The final Truss product — same image as the work-index thumbnail. -->
+  <div class="cs-hero-media" data-media="HERO">
+    <img src="../assets/images/truss-project.png" alt="Truss landing page: 'Get paid for your knowledge and expertise,' with a custom asktruss.com link and a mobile preview of an expert answering a paid question.">
+  </div>
+  </div><!-- /.cs-herostack -->
+
+  <!-- ============ BAND 1 — overview → validation ============ -->
+  <section class="cs-band cs-band--warm">
+    <div class="cs-in">
+
+      <!-- OVERVIEW -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Overview</p>
+        <h2 class="cs-block__h">We believed creators needed personalized advice, not another course.</h2>
+        <p class="cs-block__body">Truss started life as Creator Collective, a project inside Endeavor exploring how the talent agency's network could help digital creators grow their businesses. Endeavor had the client base and the relationships. What it didn't have yet was the product.</p>
+        <p class="cs-block__body cs-point"><b>My role</b><br>I was lead designer across both products, from the first research conversations through the platform Truss eventually became, working closely with engineering, product management, data science, and UX research at every stage.</p>
+        <p class="cs-block__body">This case study follows the whole arc: the assumption we started with, what the research told us instead, the marketplace we built and tested, why it broke down, and the simpler product that came out the other side.</p>
+      </div>
+
+      <!-- INITIAL DIRECTION -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Initial direction</p>
+        <h2 class="cs-block__h">We started by trying to build an education platform.</h2>
+        <p class="cs-block__body">We talked to entertainment business professionals and dug into the creator economy: the independent creators, curators, and community builders building real businesses on top of their audiences. The instinct that followed was to build courses, taught by people with real experience, on branding, content strategy, and growing income streams.</p>
+        <p class="cs-block__body">The vision was an education product that could equip creators with business knowledge and mentorship, wherever they were in their journey, and compete with the likes of MasterClass and Skillshare.</p>
+      </div>
+
+      <!-- DESIGN SPRINT / RESEARCH -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Design Sprint</p>
+        <h2 class="cs-block__h">Then we learned our assumption was wrong.</h2>
+        <p class="cs-block__body">I ran a Design Sprint to test the education-platform idea quickly with marketers, product managers, business stakeholders, and engineers. By the end of the week we had a working prototype: courses, lessons, a creator community, built in the mold of Skillshare and Coursera.</p>
+        <p class="cs-block__body">The results invalidated the direction. Testers didn't respond to traditional online education. One tester said it reminded her of being back in school — it didn't fit how she actually worked.</p>
+        <p class="cs-block__body cs-point"><b>The problem wasn't a lack of information. It was access.</b><br>Creators wanted direct access to people who had already done what they were trying to do, not another course to sit through.</p>
+        <p class="cs-block__body">A few things came out of the sprint clearly. Creators needed specific, direct advice for their niche business, not general instruction. Time mattered — they didn't have the patience to sit through a course to find the answer to one question. And more than once, someone told us they needed a mentor, or a partner, to work through a real problem with them.</p>
+        <p class="cs-block__body">Digital creators who were already monetizing had the vision and the passion. What they lacked was the know-how, and access to the right people.</p>
+      </div>
+      <!-- MEDIA: DESIGN-SPRINT-PROTOTYPE -->
+      <figure class="cs-figure reveal" data-media="DESIGN-SPRINT-PROTOTYPE">
+        <div class="cs-figure__media">
+          <img src="../assets/images/truss/design-sprint-prototype.jpg" alt="The education-platform prototype tested during the Design Sprint: a course player and a creator community forum, styled after Skillshare and Coursera.">
+        </div>
+        <figcaption>The education-platform prototype we built and tested that week — and the direction we discarded because of it.</figcaption>
+      </figure>
+
+      <!-- VALIDATION -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Validation</p>
+        <h2 class="cs-block__h">We tested whether people would actually pay for that access.</h2>
+        <p class="cs-block__body">Based on what we'd learned, we tested a new prototype: matching creators with digital experts for mentorship, advice, and hands-on help with things like brand deals and negotiation. We ran 60-minute moderated usability interviews, hosted on UserTesting, with creators sourced from UserTesting and personal connections.</p>
+      </div>
+      <!-- MEDIA: PROTOTYPE-TESTING-FLOW -->
+      <figure class="cs-figure reveal" data-media="PROTOTYPE-TESTING-FLOW">
+        <div class="cs-figure__media">
+          <img src="../assets/images/truss/prototype-testing-flow.jpg" alt="User flow diagram tested with creators: post a job, get matched with an agent, communicate, and complete the job.">
+        </div>
+        <figcaption>The flow we tested: post a job, get matched with an expert, and complete the exchange.</figcaption>
+      </figure>
+      <div class="cs-block cs-block--cont reveal">
+        <p class="cs-block__body cs-point"><b>Strong early signal</b><br>Asked how likely they'd be to use the product, testers ranked it 8 or higher across the board — three of four gave it a perfect 10.</p>
+        <p class="cs-block__body">We followed up with a Needs Analysis survey of 20 creators, asking them to rank the problems they cared about most.</p>
+        <dl class="cs-stats cs-stats--rows">
+          <div class="cs-stat">
+            <dt>90%</dt>
+            <dd><b>Lacked access to mentors</b><br>Ranked "I lack access to mentors and experts who can give me personalized advice" a 4 out of 5 or higher.</dd>
+          </div>
+          <div class="cs-stat">
+            <dt>85%</dt>
+            <dd><b>Felt overwhelmed</b><br>Running their business while creating content and growing their brand left them feeling overwhelmed.</dd>
+          </div>
+          <div class="cs-stat">
+            <dt>65%</dt>
+            <dd><b>Couldn't find providers they trusted</b><br>Finding the right service providers felt difficult, expensive, or lacking the credibility they needed.</dd>
+          </div>
+        </dl>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ BAND 2 — MVP1 → MVP2 → what didn't work → pivot → Truss ============ -->
+  <section class="cs-band cs-band--warm">
+    <div class="cs-in">
+
+      <!-- MVP 1 -->
+      <div class="cs-block reveal">
+        <p class="cs-label">MVP1</p>
+        <h2 class="cs-block__h">First, we tested the demand.</h2>
+        <p class="cs-block__body">Our first landing page was a marketing MVP: built to test our value proposition, messaging, and positioning, and to start building a pre-launch audience ahead of a public launch. It wasn't meant to sell anything yet — the goal was to drive applications for early access.</p>
+        <p class="cs-block__body cs-point"><b>Target</b><br>300 applications, plus 30 qualified service-provider applicants for the supply side.</p>
+      </div>
+      <figure class="cs-figure reveal" data-media="MVP1-APPLICATION">
+        <div class="cs-figure__media">
+          <img src="../assets/images/truss/mvp1-key-results-a.jpg" alt="The Creator Collective application form, asking creators which areas they want support with and how they currently monetize.">
+        </div>
+        <figcaption>The application flow.</figcaption>
+      </figure>
+      <figure class="cs-figure reveal" data-media="MVP1-CONFIRMATION">
+        <div class="cs-figure__media">
+          <img src="../assets/images/truss/mvp1-key-results-b.jpg" alt="Application confirmation screen and the Creator Collective about page, describing the mission and the Endeavor network behind it.">
+        </div>
+        <figcaption>Confirmation, and the case for why the network mattered.</figcaption>
+      </figure>
+      <div class="cs-block cs-block--cont reveal">
+        <p class="cs-block__body">We didn't hit the 300 target, but the signal was cheap enough to act on.</p>
+        <dl class="cs-stats">
+          <div class="cs-stat"><dt>82</dt><dd>Applications (target: 300)</dd></div>
+          <div class="cs-stat"><dt>$30</dt><dd>Google Search spend</dd></div>
+          <div class="cs-stat"><dt>$0.68</dt><dd>Cost per applicant</dd></div>
+          <div class="cs-stat"><dt>~27%</dt><dd>Qualified expert leads</dd></div>
+        </dl>
+        <p class="cs-note">Missing the target didn't matter much — the cost to generate real signal was low enough to justify building further.</p>
+      </div>
+
+      <!-- MVP 2 -->
+      <div class="cs-block reveal">
+        <p class="cs-label">MVP2</p>
+        <h2 class="cs-block__h">Then we built the marketplace.</h2>
+        <p class="cs-block__body">MVP2 was a stepping stone toward an in-house product: a no-code marketplace built on Sharetribe rather than months of custom engineering. It let us test something MVP1 couldn't — an actual transaction between a creator who needed expert services and a vetted service provider who could offer them.</p>
+        <p class="cs-block__body">The objective was simple: prove that creators who said they valued this were also willing to pay for it.</p>
+      </div>
+      <figure class="cs-figure reveal" data-media="MVP2-MARKETPLACE">
+        <div class="cs-figure__media">
+          <img src="../assets/images/truss/mvp2-marketplace-landing.jpg" alt="The full Creator Collective marketplace flow: landing page, search results, expert profile, authentication, checkout, transaction confirmation, and inbox.">
+        </div>
+        <figcaption>The full marketplace flow, from landing page to booked session.</figcaption>
+      </figure>
+      <div class="cs-block cs-block--cont reveal">
+        <p class="cs-block__body">It worked well enough to validate two things: the design and branding resonated, and people were willing to pay.</p>
+      </div>
+
+      <!-- WHAT DIDN'T WORK -->
+      <div class="cs-block reveal">
+        <p class="cs-label">What didn't work</p>
+        <h2 class="cs-block__h">The marketplace wasn't working. But the problem was real.</h2>
+        <p class="cs-block__body">Sharetribe got us to a working product fast, but it came with real limits. There was no native video calling, so sessions had to be scheduled and hosted outside the app — which meant conversations, and payments, could just as easily move off platform. We were also locked into one-hour sessions, when shorter, 15-minute increments would have matched how creators actually wanted help.</p>
+        <p class="cs-block__body cs-point"><b>Trust and pricing were the bigger issues</b><br>Our research showed users would pay $50–$100 for expert time. Some experts were charging as much as $500 an hour. Few users converted at those price points, and it wasn't always clear what they'd actually receive, or how experts had been vetted in the first place.</p>
+      </div>
+      <figure class="cs-figure reveal" data-media="MARKETPLACE-SHIPPED">
+        <div class="cs-figure__media">
+          <img src="../assets/images/truss/early-concept.jpg" alt="The Creator Collective marketplace landing page: 'Services to help creators succeed,' with a grid of expert headshots.">
+        </div>
+        <figcaption>The marketplace we shipped and tested.</figcaption>
+      </figure>
+      <div class="cs-block cs-block--cont reveal">
+        <p class="cs-block__body">Too many factors were outside our control. The marketplace itself had become complex and confusing, and trust in unfamiliar experts was a barrier we hadn't solved. As a team, we kept arriving at the same conclusion, meeting after meeting.</p>
+      </div>
+
+      <!-- THE TURN -->
+      <div class="cs-block reveal">
+        <p class="cs-label">The turn</p>
+        <h2 class="cs-block__h">We weren't wrong about the problem. We were wrong about the product.</h2>
+      </div>
+
+      <!-- THE PIVOT -->
+      <div class="cs-block reveal">
+        <p class="cs-label">The pivot</p>
+        <h2 class="cs-block__h">What if experts brought their own audiences?</h2>
+        <p class="cs-block__body">Instead of asking people to discover and trust a stranger through a marketplace, what if experts brought their own audience directly into the product? Someone already had the trust — we didn't need to manufacture it.</p>
+        <p class="cs-block__body">That flipped the model. Rather than supplying our own pool of vetted experts, the product became a tool for experts to market their own services to the audience they'd already built. It simplified the product considerably, and it became the foundation for Truss.</p>
+      </div>
+      <figure class="cs-figure reveal" data-media="PIVOT-LANDING">
+        <div class="cs-figure__media">
+          <img src="../assets/images/truss/pivot-instant-coaching-landing.jpg" alt="Truss's first landing page: 'Where content creators come to grow,' testing instant coaching from experts creators already knew.">
+        </div>
+        <figcaption>Truss's first landing page, testing the pivot: instant coaching from experts creators already trusted.</figcaption>
+      </figure>
+
+      <!-- TRUSS -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Truss</p>
+        <h2 class="cs-block__h">That became Truss.</h2>
+        <p class="cs-block__body">Truss is a platform that enables experts to monetize their knowledge and experience through instant advice and premium mentorship.</p>
+        <p class="cs-block__body">The flow is simple: an expert signs up, creates a profile and a custom vanity link, sets up service offerings, and shares the link with their audience. Their audience clicks through and books directly — no discovery, no unfamiliar marketplace, no vetting process to trust.</p>
+      </div>
+      <figure class="cs-figure reveal" data-media="TRUSS-PROFILE-SERVICES">
+        <div class="cs-figure__media">
+          <img src="../assets/images/truss/truss-profile-services.jpg" alt="An expert's Truss profile settings: name, bio, services with pricing, and a custom asktruss.com URL.">
+        </div>
+        <figcaption>An expert's profile: bio, services, pricing, and their own custom link, all in one place.</figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <!-- ============ BAND 3 — building → exploration → final → outcome → closing ============ -->
+  <section class="cs-band cs-band--warm">
+    <div class="cs-in">
+
+      <!-- BUILDING THE PRODUCT -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Building the product</p>
+        <h2 class="cs-block__h">From hypothesis to product.</h2>
+        <p class="cs-block__body">Once we had signal, we built the platform. I designed the system end to end: onboarding, profile development, services, payments, inbound requests, messaging, booking, video responses, email, and the social assets experts needed to promote their link.</p>
+      </div>
+      <figure class="cs-figure reveal" data-media="TRUSS-MOBILE-SERVICES">
+        <div class="cs-figure__media">
+          <img src="../assets/images/truss/truss-mobile-services.jpg" alt="An expert's services on mobile: Q&A for $5 and Feedback for $20, with a question field below.">
+        </div>
+        <figcaption>An expert's services, priced and described, on mobile.</figcaption>
+      </figure>
+      <figure class="cs-figure reveal" data-media="TRUSS-PAYMENTS">
+        <div class="cs-figure__media">
+          <img src="../assets/images/truss/truss-payments.jpg" alt="Truss checkout screen: the asker's question, price, and a payment form with card or Google Pay.">
+        </div>
+        <figcaption>Checkout: a direct payment flow for the person asking.</figcaption>
+      </figure>
+
+      <!-- PRODUCT EXPLORATION -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Product exploration</p>
+        <h2 class="cs-block__h">We simplified the experience around the core exchange.</h2>
+        <p class="cs-block__body">A lot of the early thinking happened on paper. Messaging was one of the harder problems: how an expert responds to a request, how an asker follows up, what happens while everyone waits. We sketched through the expert and asker views separately before building either one, working through where the friction would show up before it hit a screen.</p>
+      </div>
+      <figure class="cs-figure reveal" data-media="TRUSS-SKETCHES">
+        <div class="cs-figure__media">
+          <img src="../assets/images/truss/truss-product-sketches.jpg" alt="Hand-drawn wireframe sketches for the Truss inbound-request flow, covering the expert view, expert response, and asker view.">
+        </div>
+        <figcaption>Early sketches for inbound requests and messaging, working through the expert and asker views.</figcaption>
+      </figure>
+
+      <!-- FINAL PRODUCT -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Final product</p>
+        <h2 class="cs-block__h">Experts could finally turn their knowledge into a service.</h2>
+        <p class="cs-block__body">The final product gave experts a single link to share: a profile, their services, and a direct way for their audience to pay for their time. No marketplace to browse. No stranger to vet.</p>
+      </div>
+      <figure class="cs-figure reveal" data-media="FINAL-PRODUCT">
+        <div class="cs-figure__media">
+          <img src="../assets/images/truss/truss-final-product.jpg" alt="The final Truss landing page: 'Get paid for your knowledge and expertise,' with a claimable asktruss.com link and a mobile Q&A preview.">
+        </div>
+        <figcaption>Truss at launch.</figcaption>
+      </figure>
+
+      <!-- OUTCOME -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Outcome</p>
+        <h2 class="cs-block__h">After two years, we found product-market fit.</h2>
+        <p class="cs-block__body cs-point"><b>Steady revenue</b><br>The platform started seeing steady revenue week over week.</p>
+        <p class="cs-block__body cs-point"><b>Organic growth</b><br>People were signing up without much marketing spend behind it.</p>
+        <p class="cs-block__body cs-point"><b>Room to invest</b><br>For the first time, we could put real budget behind marketing the platform.</p>
+        <p class="cs-block__body cs-point"><b>Room to expand</b><br>Signal from high school and collegiate athletes pointed to segments worth going after next.</p>
+      </div>
+
+      <!-- CLOSING -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Closing</p>
+        <h2 class="cs-block__h">The marketplace was getting in the way.</h2>
+        <p class="cs-block__body">The breakthrough wasn't a new feature. It was realizing that the thing we'd built to solve the problem — the marketplace itself — was what stood between people and the solution.</p>
+        <p class="cs-block__body">Once we stopped trying to manufacture the relationship between expert and audience, and let the ones that already existed do the work, the product got a lot simpler. And it started working.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <nav class="cs-metarow" aria-label="Case study navigation">
+    <div class="cs-in">
+      <a href="../index.html#work">← Back to work</a>
+      <a href="album-cover-art.html">Next: Album cover art →</a>
+    </div>
+  </nav>
+
 </main>
 
 <footer id="contact">
