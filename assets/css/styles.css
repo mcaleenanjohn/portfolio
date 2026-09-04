@@ -476,12 +476,13 @@
   /* ---------------- hero ----------------
      The hero is exactly as designed. On desktop it sticks to the top while
      the cover image (which follows it inside .cs-herostack) scrolls up and
-     rides over it — native position:sticky, so there's no scroll jank. */
+     rides over it — native position:sticky, so there's no scroll jank.
+     The top padding also clears the fixed site nav. */
   .cs-herostack{position:relative;}
   .cs-hero{
     position:relative; z-index:1;
     background:var(--bg); overflow:hidden;
-    padding:clamp(68px,11vh,120px) 0 clamp(44px,6vw,72px);
+    padding:calc(clamp(68px,11vh,120px) + 60px) 0 clamp(44px,6vw,72px);
   }
   @media (min-width:700px) and (prefers-reduced-motion:no-preference){
     .cs-hero{position:sticky; top:0;}
