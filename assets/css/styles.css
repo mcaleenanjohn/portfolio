@@ -470,7 +470,8 @@
   .cs-band > .cs-in > .cs-block + .cs-figure,
   .cs-band > .cs-in > .cs-block + .cs-grid3{margin-top:clamp(34px,4.5vw,52px);}
   .cs-band > .cs-in > .cs-figure + .cs-figure{margin-top:clamp(20px,2.6vw,32px);}
-  .cs-band > .cs-in > .cs-figure + .cs-block--cont{margin-top:clamp(28px,3.6vw,42px);}
+  .cs-band > .cs-in > .cs-figure + .cs-block--cont,
+  .cs-band > .cs-in > .cs-block + .cs-block--cont{margin-top:clamp(28px,3.6vw,42px);}
 
   /* ---------------- hero ----------------
      The hero is exactly as designed. On desktop it sticks to the top while

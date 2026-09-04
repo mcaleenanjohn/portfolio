@@ -29,17 +29,16 @@
     │  modifier class and the inline aspect-ratio.                         │
     │                                                                     │
     │  Slots, in order:                                                    │
-    │   HERO-FLOOR-PLAN                                                    │
-    │   OVERVIEW                                                          │
-    │   PROBLEM                                                           │
-    │   WORKSPACE-FLOOR-PLANS-TAB                                          │
-    │   COMPETITIVE-RESEARCH   (optional 2nd: VENUE-WORKFLOW)              │
-    │   V1-BUILDER                                                        │
-    │   FEEDBACK-DATA                                                     │
-    │   V2-TEMPLATES-SAVE · V2-TEMPLATES-GALLERY · V2-TEMPLATES-CREATE    │
-    │   V2-SCALE-BLUEPRINT                                                │
-    │   V2-PRECISION   (may be a video: V2-PRECISION-INTERACTION)         │
-    │   FINAL-FLOOR-PLAN                                                  │
+    │   HERO-FLOOR-PLAN        — filled: images/floor-plans-case-cover.png │
+    │   COMPETITIVE-RESEARCH   — filled  (optional 2nd: VENUE-WORKFLOW)    │
+    │   WORKSPACE-FLOOR-PLANS-TAB — filled: video/floor-plans/…-tab.mp4   │
+    │   V1-BUILDER            — filled  images/floor-plans/v1-builder.jpg │
+    │   V2-TEMPLATES-SAVE · -GALLERY · -CREATE — filled, as a 3-up row    │
+    │   V2-SCALE-BLUEPRINT    — filled: video/floor-plans/v2-scale-…mp4  │
+    │   V2-PRECISION          — filled: video …/v2-precision-interaction │
+    │   FINAL-FLOOR-PLAN      — filled: video …/final-floor-plan.mp4     │
+    │                                                                     │
+    │  All 13 slots filled. Overview/Problem text-only; Feedback no media.│
     └─────────────────────────────────────────────────────────────────────┘
   -->
 
@@ -71,90 +70,47 @@
     </div>
   </header>
 
-  <!-- MEDIA: HERO-FLOOR-PLAN — the strongest product visual. Replace with: <div class="cs-hero-media"><img src="…" alt="…"></div> -->
-  <div class="cs-hero-media cs-hero-media--ph" data-media="HERO-FLOOR-PLAN">
-    <span class="cs-ph-label">Media<br><b>HERO-FLOOR-PLAN</b></span>
+  <!-- MEDIA: HERO-FLOOR-PLAN — same image as the work-index thumbnail. -->
+  <div class="cs-hero-media" data-media="HERO-FLOOR-PLAN">
+    <img src="../assets/images/floor-plans-case-cover.png" alt="The HoneyBook Floor Plans builder with a venue floor plan laid out on the canvas.">
   </div>
   </div><!-- /.cs-herostack -->
 
-  <!-- ============ BAND 1 — overview → V1 ============ -->
+  <!-- ============ BAND 1 — overview → research ============ -->
   <section class="cs-band cs-band--warm">
     <div class="cs-in">
 
       <!-- OVERVIEW -->
       <div class="cs-block reveal">
         <p class="cs-label">Overview</p>
-        <h2 class="cs-block__h">Venues are one of HoneyBook's highest-revenue verticals—and the customers most likely to need a floor plan for every event.</h2>
+        <h2 class="cs-block__h">Venues are one of HoneyBook's highest-revenue verticals. They're also the customers most likely to need a floor plan for every event.</h2>
         <p class="cs-block__body">Without a native tool, venue teams were piecing the workflow together across Canva, Prismm, and AllSeated. HoneyBook already had the booking data, client portal, and relationship. It was missing the tool.</p>
       </div>
-      <!-- MEDIA: OVERVIEW — establishes the venue context / the tools it was pieced together across. -->
-      <figure class="cs-figure reveal" data-media="OVERVIEW">
-        <div class="cs-figure__media cs-figure__media--ph" style="aspect-ratio:1326/595">
-          <span class="cs-ph-label">Media<br><b>OVERVIEW</b></span>
-        </div>
-      </figure>
 
       <!-- PROBLEM -->
       <div class="cs-block reveal">
         <p class="cs-label">The problem</p>
         <h2 class="cs-block__h">Floor planning was a completely separate job.</h2>
-        <p class="cs-block__body">Build a plan in another tool, export it, email it, get feedback, update it, and send it again. Different people ended up working from different versions—with no connection to the contract, guest count, or client portal.</p>
+        <p class="cs-block__body">Build a plan in another tool, export it, email it, get feedback, update it, and send it again. Different people ended up working from different versions. None of them were connected to the contract, guest count, or client portal.</p>
         <p class="cs-block__body">The opportunity: bring floor planning into the project itself, creating one shared source of truth.</p>
       </div>
-      <!-- MEDIA: PROBLEM — the fragmented, pieced-together workflow (diagram or screenshot). -->
-      <figure class="cs-figure reveal" data-media="PROBLEM">
-        <div class="cs-figure__media cs-figure__media--ph" style="aspect-ratio:1326/595">
-          <span class="cs-ph-label">Media<br><b>PROBLEM</b></span>
-        </div>
-      </figure>
 
-      <!-- WORKSPACE -->
-      <div class="cs-block reveal">
-        <p class="cs-label">Workspace</p>
-        <h2 class="cs-block__h">Before designing the builder, I designed where it would live.</h2>
-        <p class="cs-block__body">Floor Plans became a dedicated tab inside every HoneyBook project.</p>
-        <p class="cs-block__body">I defined three statuses to separate preparation from sharing, distinct experiences for venues and clients, and a creation flow that surfaced templates from the start.</p>
-      </div>
-      <!-- MEDIA: WORKSPACE-FLOOR-PLANS-TAB -->
-      <figure class="cs-figure reveal" data-media="WORKSPACE-FLOOR-PLANS-TAB">
-        <div class="cs-figure__media cs-figure__media--ph" style="aspect-ratio:1326/595">
-          <span class="cs-ph-label">Media<br><b>WORKSPACE-FLOOR-PLANS-TAB</b></span>
-        </div>
-        <figcaption>Floor Plans inside the project. Create, manage, and share plans without leaving HoneyBook.</figcaption>
-      </figure>
-
-      <!-- INSIGHT -->
+      <!-- RESEARCH / COMPETITIVE ANALYSIS -->
       <div class="cs-block reveal">
         <p class="cs-label">Research</p>
-        <h2 class="cs-block__h">Version control was the real problem—not drawing.</h2>
+        <h2 class="cs-block__h">Version control was the real problem, not drawing.</h2>
         <p class="cs-block__body">We studied 13 tools, mapped the venue workflow end-to-end, and spoke with early users.</p>
         <p class="cs-block__body">The biggest pain wasn't creating a floor plan. It was knowing which version was current.</p>
         <p class="cs-block__body">We also found that venues work in two modes: set up a space once, then adapt it for each booking. Most existing tools didn't account for that.</p>
-        <p class="cs-block__body">And HoneyBook had something competitors didn't: the context around the plan—guest counts, contracts, clients, and relationships—already lived in the product.</p>
+        <p class="cs-block__body">HoneyBook also had something competitors didn't. The context around the plan already lived in the product: guest counts, contracts, clients, and relationships.</p>
       </div>
       <!-- MEDIA: COMPETITIVE-RESEARCH -->
       <figure class="cs-figure reveal" data-media="COMPETITIVE-RESEARCH">
-        <div class="cs-figure__media cs-figure__media--ph" style="aspect-ratio:1326/595">
-          <span class="cs-ph-label">Media<br><b>COMPETITIVE-RESEARCH</b><small>competitive analysis from the portfolio deck</small></span>
+        <div class="cs-figure__media">
+          <img src="../assets/images/floor-plans/COMPETITIVE-RESEARCH.jpg" alt="Competitive analysis comparing 13 floor planning tools across the venue workflow.">
         </div>
       </figure>
       <!-- OPTIONAL MEDIA: VENUE-WORKFLOW — add a second <figure class="cs-figure"> here only if it adds meaningful value. -->
-
-      <!-- V1 -->
-      <div class="cs-block reveal">
-        <p class="cs-label">V1</p>
-        <h2 class="cs-block__h">We deliberately started small.</h2>
-        <p class="cs-block__body">The first version wasn't meant to solve everything.</p>
-        <p class="cs-block__body">We wanted to get a working product in front of real venues, learn from how they actually used it, and use that feedback to shape what came next.</p>
-        <p class="cs-block__body">V1 focused on the core builder: a categorized element library, infinite canvas, ruler, and image-scale calibration. It launched to 30% of venue members.</p>
-      </div>
-      <!-- MEDIA: V1-BUILDER -->
-      <figure class="cs-figure reveal" data-media="V1-BUILDER">
-        <div class="cs-figure__media cs-figure__media--ph" style="aspect-ratio:1326/595">
-          <span class="cs-ph-label">Media<br><b>V1-BUILDER</b></span>
-        </div>
-        <figcaption>V1 builder.</figcaption>
-      </figure>
 
     </div>
   </section>
@@ -175,9 +131,46 @@
     </div>
   </section>
 
-  <!-- ============ BAND 2 — feedback → V2 → impact ============ -->
+  <!-- ============ BAND 2 — workspace → impact ============ -->
   <section class="cs-band cs-band--warm">
     <div class="cs-in">
+
+      <!-- WORKSPACE -->
+      <div class="cs-block reveal">
+        <p class="cs-label">Workspace</p>
+        <h2 class="cs-block__h">Before designing the builder, I designed where it would live.</h2>
+        <p class="cs-block__body">Floor Plans became a dedicated tab inside every HoneyBook project.</p>
+        <p class="cs-block__body">I defined three statuses to separate preparation from sharing, distinct experiences for venues and clients, and a creation flow that surfaced templates from the start.</p>
+      </div>
+      <!-- MEDIA: WORKSPACE-FLOOR-PLANS-TAB (video) -->
+      <figure class="cs-figure reveal" data-media="WORKSPACE-FLOOR-PLANS-TAB">
+        <div class="cs-figure__media">
+          <video class="cs-video" autoplay muted loop playsinline preload="metadata"
+                 poster="../assets/video/floor-plans/posters/workspace-floor-plans-tab.jpg">
+            <source src="../assets/video/floor-plans/workspace-floor-plans-tab.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption>Floor Plans inside the project. Create, manage, and share plans without leaving HoneyBook.</figcaption>
+      </figure>
+
+      <!-- V1 -->
+      <div class="cs-block reveal">
+        <p class="cs-label">V1</p>
+        <h2 class="cs-block__h">We deliberately started small.</h2>
+        <p class="cs-block__body">The first version wasn't meant to solve everything.</p>
+        <p class="cs-block__body">We wanted to get a working product in front of real venues, learn from how they actually used it, and use that feedback to shape what came next.</p>
+        <p class="cs-block__body">V1 launched to 30% of venue members with the core builder:</p>
+        <p class="cs-block__body cs-point"><b>1 · Element panel</b><br>Furniture, shapes, rooms, and text. Organized by category. Drag or click to place.</p>
+        <p class="cs-block__body cs-point"><b>2 · Status bar</b><br>The plan's name, its project, and its current publish status, at a glance.</p>
+        <p class="cs-block__body cs-point"><b>3 · Canvas</b><br>An infinite grid with a 1×1 ft scale indicator. Build freely, set the scale once.</p>
+      </div>
+      <!-- MEDIA: V1-BUILDER -->
+      <figure class="cs-figure reveal" data-media="V1-BUILDER">
+        <div class="cs-figure__media">
+          <img src="../assets/images/floor-plans/v1-builder.jpg" alt="The V1 Floor Plans builder, annotated: (1) the categorized element panel, (2) the status bar, (3) the infinite canvas with a 1×1 ft scale indicator.">
+        </div>
+        <figcaption>V1 builder.</figcaption>
+      </figure>
 
       <!-- FEEDBACK -->
       <div class="cs-block reveal">
@@ -185,12 +178,6 @@
         <h2 class="cs-block__h">We shipped to 30%. Then we listened.</h2>
         <p class="cs-block__body">11 venue members responded. The signal was clear.</p>
       </div>
-      <!-- MEDIA: FEEDBACK-DATA -->
-      <figure class="cs-figure reveal" data-media="FEEDBACK-DATA">
-        <div class="cs-figure__media cs-figure__media--ph" style="aspect-ratio:1326/595">
-          <span class="cs-ph-label">Media<br><b>FEEDBACK-DATA</b></span>
-        </div>
-      </figure>
       <div class="cs-block cs-block--cont reveal">
         <dl class="cs-stats cs-stats--rows">
           <div class="cs-stat">
@@ -203,7 +190,7 @@
           </div>
           <div class="cs-stat">
             <dt>45%</dt>
-            <dd><b>More object types</b><br>Dance floors, bars, podiums, screens—the library needed to support real event use.</dd>
+            <dd><b>More object types</b><br>Dance floors, bars, podiums, screens. The library needed to support real event use.</dd>
           </div>
         </dl>
         <p class="cs-note">Templates, a clearer wall tool, and the ability to lock elements rounded out the feedback.</p>
@@ -213,10 +200,10 @@
       <div class="cs-block reveal">
         <p class="cs-label">Direction</p>
         <h2 class="cs-block__h">The feedback gave us a clear path forward.</h2>
-        <p class="cs-block__body">I helped align Product, Engineering, and the venue team around what to ship first—and what would make the product genuinely competitive.</p>
+        <p class="cs-block__body">I helped align Product, Engineering, and the venue team around what to ship first and what would make the product genuinely competitive.</p>
         <p class="cs-block__body cs-point"><b>Align the MVP</b><br>Focus V1 on the core builder so we could launch quickly and learn.</p>
         <p class="cs-block__body cs-point"><b>Set the V2 priorities</b><br>Turn member feedback into a roadmap centered on scale, blueprint uploads, templates, and precision.</p>
-        <p class="cs-block__body cs-point"><b>Protect the product vision</b><br>Partner through build and QA to keep Floor Plans native to the HoneyBook project—not a standalone tool.</p>
+        <p class="cs-block__body cs-point"><b>Protect the product vision</b><br>Partner through build and QA to keep Floor Plans native to the HoneyBook project, not a standalone tool.</p>
       </div>
 
       <!-- V2 — TEMPLATES -->
@@ -224,24 +211,29 @@
         <p class="cs-label">V2 · Templates</p>
         <h2 class="cs-block__h">Build once. Reuse everywhere.</h2>
         <p class="cs-block__body">Venues set up the same spaces again and again.</p>
-        <p class="cs-block__body">Templates let them save a room once and reuse it across bookings—without starting from scratch every time.</p>
+        <p class="cs-block__body">Templates let them save a room once and reuse it across bookings without starting from scratch every time.</p>
       </div>
-      <!-- MEDIA: V2-TEMPLATES — a three-step progression (save → gallery → create). Stacked, in order. -->
-      <figure class="cs-figure reveal" data-media="V2-TEMPLATES-SAVE">
-        <div class="cs-figure__media cs-figure__media--ph" style="aspect-ratio:1326/595">
-          <span class="cs-ph-label">Media<br><b>V2-TEMPLATES-SAVE</b></span>
-        </div>
-      </figure>
-      <figure class="cs-figure reveal" data-media="V2-TEMPLATES-GALLERY">
-        <div class="cs-figure__media cs-figure__media--ph" style="aspect-ratio:1326/595">
-          <span class="cs-ph-label">Media<br><b>V2-TEMPLATES-GALLERY</b></span>
-        </div>
-      </figure>
-      <figure class="cs-figure reveal" data-media="V2-TEMPLATES-CREATE">
-        <div class="cs-figure__media cs-figure__media--ph" style="aspect-ratio:1326/595">
-          <span class="cs-ph-label">Media<br><b>V2-TEMPLATES-CREATE</b></span>
-        </div>
-      </figure>
+      <!-- MEDIA: V2-TEMPLATES — save → gallery → create, as a 3-up row -->
+      <div class="cs-grid3 reveal">
+        <figure class="cs-figure" data-media="V2-TEMPLATES-SAVE">
+          <div class="cs-figure__media">
+            <img src="../assets/images/floor-plans/V2-TEMPLATES-SAVE.png" alt="Saving a floor plan layout as a reusable template from inside the builder.">
+          </div>
+          <figcaption><b>Save as template.</b> One click from inside the builder saves the layout to the account-level library.</figcaption>
+        </figure>
+        <figure class="cs-figure" data-media="V2-TEMPLATES-GALLERY">
+          <div class="cs-figure__media">
+            <img src="../assets/images/floor-plans/V2-TEMPLATES-GALLERY.png" alt="The Floor plan templates tab, listed under My Templates.">
+          </div>
+          <figcaption><b>Floor plan templates tab.</b> Lives under My Templates alongside file and email templates.</figcaption>
+        </figure>
+        <figure class="cs-figure" data-media="V2-TEMPLATES-CREATE">
+          <div class="cs-figure__media">
+            <img src="../assets/images/floor-plans/V2-TEMPLATES-CREATE.png" alt="Choosing an existing template as the starting point for a new floor plan.">
+          </div>
+          <figcaption><b>Create from template.</b> When starting a new floor plan, pick an existing template as the starting point.</figcaption>
+        </figure>
+      </div>
 
       <!-- V2 — SCALE -->
       <div class="cs-block reveal">
@@ -249,10 +241,13 @@
         <h2 class="cs-block__h">Floor plans needed to work in the real world.</h2>
         <p class="cs-block__body">7 of 11 members said scale was the biggest reason they couldn't switch to HoneyBook.</p>
       </div>
-      <!-- MEDIA: V2-SCALE-BLUEPRINT -->
+      <!-- MEDIA: V2-SCALE-BLUEPRINT (video) -->
       <figure class="cs-figure reveal" data-media="V2-SCALE-BLUEPRINT">
-        <div class="cs-figure__media cs-figure__media--ph" style="aspect-ratio:1326/595">
-          <span class="cs-ph-label">Media<br><b>V2-SCALE-BLUEPRINT</b></span>
+        <div class="cs-figure__media">
+          <video class="cs-video" autoplay muted loop playsinline preload="metadata"
+                 poster="../assets/video/floor-plans/posters/v2-scale-blueprint.jpg">
+            <source src="../assets/video/floor-plans/v2-scale-blueprint.mp4" type="video/mp4">
+          </video>
         </div>
       </figure>
       <div class="cs-block cs-block--cont reveal">
@@ -266,13 +261,15 @@
         <p class="cs-label">V2 · Precision</p>
         <h2 class="cs-block__h">More control. Less guessing.</h2>
         <p class="cs-block__body">We redesigned the wall interaction and added tools for measuring and locking elements in place.</p>
-        <p class="cs-block__body">The builder could now behave more like something venues could actually use to plan a physical space—not just draw one.</p>
+        <p class="cs-block__body">The builder could now behave more like something venues could actually use to plan a physical space, not just draw one.</p>
       </div>
-      <!-- MEDIA: V2-PRECISION — wall tool / measurements / ruler / locking. If the final asset is a video, use VIDEO: V2-PRECISION-INTERACTION
-           and replace with: <div class="cs-figure__media"><video class="cs-video" autoplay muted loop playsinline poster="…"><source src="…" type="video/mp4"></video></div> -->
+      <!-- MEDIA: V2-PRECISION-INTERACTION (video) — wall tool / measurements / ruler / locking -->
       <figure class="cs-figure reveal" data-media="V2-PRECISION">
-        <div class="cs-figure__media cs-figure__media--ph" style="aspect-ratio:16/9">
-          <span class="cs-ph-label">Media / Video<br><b>V2-PRECISION</b><small>image, or video: V2-PRECISION-INTERACTION</small></span>
+        <div class="cs-figure__media">
+          <video class="cs-video" autoplay muted loop playsinline preload="metadata"
+                 poster="../assets/video/floor-plans/posters/v2-precision-interaction.jpg">
+            <source src="../assets/video/floor-plans/v2-precision-interaction.mp4" type="video/mp4">
+          </video>
         </div>
       </figure>
 
@@ -283,12 +280,15 @@
         <p class="cs-block__body">Floor Plans now lives inside the HoneyBook project alongside the booking, client, and event context it belongs to.</p>
         <p class="cs-block__body">No exports. No second tool. One source of truth.</p>
       </div>
-      <!-- MEDIA: FINAL-FLOOR-PLAN — one of the strongest visual moments on the page. -->
+      <!-- MEDIA: FINAL-FLOOR-PLAN (video) — one of the strongest visual moments on the page. -->
       <figure class="cs-figure reveal" data-media="FINAL-FLOOR-PLAN">
-        <div class="cs-figure__media cs-figure__media--ph" style="aspect-ratio:2/1">
-          <span class="cs-ph-label">Media<br><b>FINAL-FLOOR-PLAN</b></span>
+        <div class="cs-figure__media">
+          <video class="cs-video" autoplay muted loop playsinline controls preload="metadata"
+                 poster="../assets/video/floor-plans/posters/final-floor-plan.jpg">
+            <source src="../assets/video/floor-plans/final-floor-plan.mp4" type="video/mp4">
+          </video>
         </div>
-        <figcaption>Floor Plans after V2. Templates, saved plans, and the full planning workflow—inside the project.</figcaption>
+        <figcaption>Floor Plans after V2. Templates, saved plans, and the full planning workflow, inside the project.</figcaption>
       </figure>
 
       <!-- IMPACT -->
