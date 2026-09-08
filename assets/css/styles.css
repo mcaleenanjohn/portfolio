@@ -225,13 +225,17 @@
     /* hero fills the screen minus the ticker's own height (46px), so hero +
        ticker together equal exactly one viewport — .hero can't use flex:1
        in a wrapper here since its sticky containing block on desktop needs
-       to stay .hero-screen (which also spans the featured section below). */
+       to stay .hero-screen (which also spans the featured section below).
+       Three zones: intro sits at the top (clear of the fixed nav), the
+       headline centers in the remaining middle space (.hero-main's own
+       flex:1 + justify-content:center guarantees equal space above/below
+       it with no extra math needed), meta row stays pinned at the bottom. */
     .hero{
       aspect-ratio:auto; min-height:calc(100vh - 46px); min-height:calc(100svh - 46px);
-      padding:120px 20px 32px; display:flex; flex-direction:column;
+      padding:148px 20px 32px; display:flex; flex-direction:column;
     }
     .hero-main{flex:1; display:flex; flex-direction:column; justify-content:center;}
-    .hero-intro{position:static; width:auto; margin-bottom:40px;}
+    .hero-intro{position:static; width:auto; margin-bottom:0;}
     .hero-intro img{width:64px; height:64px; min-width:0; max-width:64px;}
     h1.headline{position:static; width:auto; font-size:clamp(28px,7vw,40px);}
     .meta-row{position:static; width:auto; flex-wrap:wrap; gap:12px;}
