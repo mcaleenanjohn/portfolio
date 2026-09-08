@@ -207,6 +207,7 @@
   .hero-intro, h1.headline, .meta-row{z-index:1;}
 
   @media (max-width:760px){
+    .wrap{padding:0 20px;}
     nav{padding:20px 0;}
     nav .wrap{gap:16px;}
     .logo svg{width:32px;}
