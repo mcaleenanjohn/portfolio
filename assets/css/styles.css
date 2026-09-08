@@ -287,7 +287,18 @@
   .case-tags{display:flex; gap:11px; flex-wrap:wrap;}
   .case-tags span{border:1px solid var(--body); border-radius:100px; padding:4px 8px; font-size:14px; color:var(--body);}
 
-  @media (max-width:760px){ .case-meta{flex-direction:column; align-items:flex-start; gap:8px;} }
+  @media (max-width:760px){
+    /* CTA moves below the image: flatten .case-head/.case-meta with display:contents
+       so title/link/desc/tags/visual all become direct flex children of .case,
+       then reorder them explicitly. */
+    .case{display:flex; flex-direction:column; gap:18px;}
+    .case-head, .case-meta{display:contents;}
+    .case-title{order:1;}
+    .case-desc{order:2;}
+    .case-tags{order:3;}
+    .case-visual{order:4; margin-top:0;}
+    .case-link{order:5;}
+  }
 
   /* ---------- PROJECT GRID ---------- */
   .projects{background:var(--bg); padding:120px 0;}
