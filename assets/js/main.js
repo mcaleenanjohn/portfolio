@@ -17,6 +17,80 @@
     onScroll();
   }
 
+  /* ---------- Mobile nav (hamburger) ----------
+     Built from the existing .navlinks rather than duplicated per page. Runs
+     before the resume modal below so its [data-resume] query also catches
+     the cloned link. */
+  (function mobileNav() {
+    if (!nav) return;
+    const wrap = nav.querySelector('.wrap');
+    const navlinks = nav.querySelector('.navlinks');
+    if (!wrap || !navlinks) return;
+
+    const burger = document.createElement('button');
+    burger.type = 'button';
+    burger.className = 'nav-burger';
+    burger.setAttribute('aria-label', 'Open menu');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-controls', 'mobile-nav');
+    burger.innerHTML =
+      '<svg class="nav-burger__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+        '<line class="nav-burger__line nav-burger__line--top" x1="4" x2="20" y1="6" y2="6"/>' +
+        '<line class="nav-burger__line nav-burger__line--mid" x1="4" x2="20" y1="12" y2="12"/>' +
+        '<line class="nav-burger__line nav-burger__line--bot" x1="4" x2="20" y1="18" y2="18"/>' +
+      '</svg>';
+    wrap.appendChild(burger);
+
+    const panel = document.createElement('div');
+    panel.className = 'mobile-nav';
+    panel.id = 'mobile-nav';
+    panel.hidden = true;
+    panel.innerHTML = '<div class="mobile-nav__panel"></div>';
+    const linksClone = navlinks.cloneNode(true);
+    linksClone.className = 'navlinks mobile-nav__links';
+    panel.querySelector('.mobile-nav__panel').appendChild(linksClone);
+    document.body.appendChild(panel);
+
+    let closeTimer = null;
+    let lastFocused = null;
+
+    function open() {
+      clearTimeout(closeTimer);
+      lastFocused = document.activeElement;
+      panel.hidden = false;
+      void panel.offsetWidth; // force reflow so the transition runs from the hidden state
+      panel.classList.add('is-open');
+      burger.classList.add('is-open');
+      burger.setAttribute('aria-expanded', 'true');
+      burger.setAttribute('aria-label', 'Close menu');
+      document.body.classList.add('mobile-nav-open');
+      document.addEventListener('keydown', onKeydown);
+    }
+    function close() {
+      panel.classList.remove('is-open');
+      burger.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Open menu');
+      document.body.classList.remove('mobile-nav-open');
+      document.removeEventListener('keydown', onKeydown);
+      closeTimer = setTimeout(() => { panel.hidden = true; }, 320);
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+    function onKeydown(e) {
+      if (e.key === 'Escape') close();
+    }
+
+    burger.addEventListener('click', () => {
+      if (burger.classList.contains('is-open')) close(); else open();
+    });
+    panel.addEventListener('click', (e) => {
+      if (e.target.closest('a')) close();
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 760 && burger.classList.contains('is-open')) close();
+    });
+  })();
+
   /* Custom "View" cursor over work thumbnails (fine pointers only) */
   if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     const cursor = document.createElement('div');

@@ -35,19 +35,26 @@
   <!--
     ┌─────────────────────────────────────────────────────────────────────┐
     │  MEDIA: built from the portfolio deck (AI-Powered Outbound Engine,   │
-    │  pp. 22–37). Sections without a clean, non-duplicate asset stay      │
-    │  text-only, per the brief.                                           │
+    │  pp. 21–36 of John McAleenan — Portfoliov2.pdf).                      │
     │                                                                     │
     │   HERO                images/outbound-engine-case-cover.png (repo)   │
-    │   WHAT WE BUILT       images/outbound-engine/what-we-built.jpg       │
+    │   WHAT WE BUILT       images/outbound-engine/whatwebuilt-{email,site}│
     │   THE PROBLEM         images/outbound-engine/inherited-landing-page  │
-    │   EMAIL DESIGN        images/outbound-engine/email-refined.jpg       │
+    │   THE SHIFT           images/outbound-engine/research{1,2}.jpg       │
+    │   EMAIL DESIGN        images/outbound-engine/emailtemplate.jpg +     │
+    │                       Emailtemplatelivepreview.jpg                   │
     │   EMAIL REFINEMENT    images/outbound-engine/email-direction.jpg     │
-    │   CLAUDE CODE         images/outbound-engine/claude-code-prototype   │
+    │   IA + FIGMA          images/outbound-engine/IA.jpg +                │
+    │                       Figma-sourceoftruth.jpg                        │
+    │   CLAUDE CODE         video/outbound-engine/claude-code-prototype.mp4│
+    │   KEY DESIGN DECISIONS images/outbound-engine/{scrollbar,sidenav,    │
+    │                       paralax,fixedbottomCTA}.jpg                    │
+    │   HANDOFF + QA        images/outbound-engine/Handoff+qa.png          │
     │   FINAL DESIGN        video/outbound-engine/final-design.mp4 (+ctrl) │
     │                                                                     │
-    │  Text-only: The shift, Landing page, IA + Figma, Shaping the        │
-    │  direction, Key design decisions, Handoff + QA, Early results.       │
+    │  Text-only: Landing page, Shaping the direction, Early results.      │
+    │  (deck slide for "Shaping the direction" is decorative emoji icons, │
+    │  not a screenshot — no equivalent asset to show.)                    │
     └─────────────────────────────────────────────────────────────────────┘
   -->
 
@@ -108,12 +115,20 @@
         <p class="cs-block__body">Together, they created a more consultative path from cold outreach to product discovery.</p>
       </div>
       <!-- MEDIA: email + landing page system -->
-      <figure class="cs-figure reveal" data-media="WHAT-WE-BUILT">
-        <div class="cs-figure__media">
-          <img src="../assets/images/outbound-engine/what-we-built.jpg" alt="A generated pair side by side: a personalized cold email on the left and the personalized landing page it links to on the right.">
-        </div>
-        <figcaption>The generated pair. The email opens the conversation, the landing page continues it.</figcaption>
-      </figure>
+      <div class="cs-grid2 reveal">
+        <figure class="cs-figure" data-media="WHAT-WE-BUILT-EMAIL">
+          <div class="cs-figure__media">
+            <img src="../assets/images/outbound-engine/whatwebuilt-email.jpg" alt="A stack of generated cold emails in Gmail, each opening with a different inferred pain point.">
+          </div>
+          <figcaption><b>Personalized emails.</b> Pain-led, JTBD-oriented, written in a human tone.</figcaption>
+        </figure>
+        <figure class="cs-figure" data-media="WHAT-WE-BUILT-SITE">
+          <div class="cs-figure__media">
+            <img src="../assets/images/outbound-engine/whatwebuilt-site.jpg" alt="The personalized HoneyBook landing page addressed to Marcus, continuing the email's narrative.">
+          </div>
+          <figcaption><b>Personalized landing pages.</b> Echoes the email, one clear next step, zero distractions.</figcaption>
+        </figure>
+      </div>
 
       <!-- THE PROBLEM -->
       <div class="cs-block reveal">
@@ -143,6 +158,19 @@
         <p class="cs-block__body cs-point"><b>growth.design</b><br>Their case studies use a structured, modular format. Users move through slides, progress indicators show where they are, and the information is easy to scan. It feels more like an experience than marketing.</p>
         <p class="cs-block__body cs-point"><b>Spotify Wrapped</b><br>They take personal data and present it in a way that's engaging and easy to navigate. The format respects the reader's time and makes the experience feel thoughtful.</p>
       </div>
+      <!-- MEDIA: the two reference inspirations -->
+      <figure class="cs-figure reveal" data-media="SHIFT-GROWTHDESIGN">
+        <div class="cs-figure__media">
+          <img src="../assets/images/outbound-engine/research1.jpg" alt="growth.design case studies in a structured, slide-based format with progress indicators.">
+        </div>
+        <figcaption>growth.design: a modular, slide-based format that doesn't feel like marketing.</figcaption>
+      </figure>
+      <figure class="cs-figure reveal" data-media="SHIFT-SPOTIFYWRAPPED">
+        <div class="cs-figure__media">
+          <img src="../assets/images/outbound-engine/research2.jpg" alt="Spotify Wrapped for Artists: personal stats presented as an engaging, swipeable story.">
+        </div>
+        <figcaption>Spotify Wrapped: personal data made engaging, not overwhelming.</figcaption>
+      </figure>
 
       <!-- EMAIL DESIGN -->
       <div class="cs-block reveal">
@@ -156,13 +184,21 @@
         <p class="cs-block__body cs-point"><b>Admin burden</b><br>"Chasing Venmo payments after every event?"</p>
         <p class="cs-block__body cs-point"><b>Migration anxiety</b><br>"Switching feels risky. We can make it painless."</p>
       </div>
-      <!-- MEDIA: personalized email example (final conversational tone) -->
-      <figure class="cs-figure reveal" data-media="EMAIL-DESIGN">
-        <div class="cs-figure__media">
-          <img src="../assets/images/outbound-engine/email-refined.jpg" alt="A finished personalized email in an inbox: subject 'Portfolio sharp, intake messy', a short conversational note that names one specific pain and links to a page.">
-        </div>
-        <figcaption>A finished hook. It names one real pain, offers a look, and doesn't push.</figcaption>
-      </figure>
+      <!-- MEDIA: proposed template + finished email example -->
+      <div class="cs-grid2 reveal">
+        <figure class="cs-figure" data-media="EMAIL-TEMPLATE">
+          <div class="cs-figure__media">
+            <img src="../assets/images/outbound-engine/emailtemplate.jpg" alt="The proposed email template: subject line formula, message structure, and generation rules.">
+          </div>
+          <figcaption><b>The template.</b> Structure and rules fed directly into the AI prompt.</figcaption>
+        </figure>
+        <figure class="cs-figure" data-media="EMAIL-DESIGN">
+          <div class="cs-figure__media">
+            <img src="../assets/images/outbound-engine/Emailtemplatelivepreview.jpg" alt="A finished personalized email in an inbox: subject 'Portfolio sharp, intake messy', a short conversational note that names one specific pain and links to a page.">
+          </div>
+          <figcaption><b>The result.</b> Names one real pain, offers a look, and doesn't push.</figcaption>
+        </figure>
+      </div>
 
       <!-- EMAIL REFINEMENT -->
       <div class="cs-block reveal">
@@ -196,6 +232,19 @@
         <p class="cs-block__body">I mapped the user journey through the page with an eight-module structure.</p>
         <p class="cs-block__body">Then I moved to Figma to build modular components that could be reused, personalized, and tested in code before engineering started.</p>
       </div>
+      <!-- MEDIA: IA map + Figma component board, stacked -->
+      <figure class="cs-figure reveal" data-media="IA-MAP">
+        <div class="cs-figure__media">
+          <img src="../assets/images/outbound-engine/IA.jpg" alt="The eight-module information architecture: an email-to-landing-page flow with a table naming each module's job.">
+        </div>
+        <figcaption><b>Information architecture.</b> Eight modules, from hero to closing CTA.</figcaption>
+      </figure>
+      <figure class="cs-figure reveal" data-media="FIGMA-BOARD">
+        <div class="cs-figure__media">
+          <img src="../assets/images/outbound-engine/Figma-sourceoftruth.jpg" alt="The Figma file: modular hero, shift, solution, and CTA components organized for reuse.">
+        </div>
+        <figcaption><b>Figma.</b> Built to be reused, personalized, and tested in code.</figcaption>
+      </figure>
 
       <!-- CLAUDE CODE -->
       <div class="cs-block reveal">
@@ -206,10 +255,21 @@
         <p class="cs-block__body">From there, I took each Figma module and iteratively refined them until I had a working prototype to share with the team.</p>
         <p class="cs-block__body">The prototype made the interaction model tangible before engineering committed to the final build.</p>
       </div>
-      <!-- MEDIA: Claude Code prototype -->
-      <figure class="cs-figure reveal" data-media="CLAUDE-CODE">
-        <div class="cs-figure__media">
-          <img src="../assets/images/outbound-engine/claude-code-prototype.jpg" alt="Claude Code building the landing page: an editor with a live preview of the personalized page and a running log of the edits made to each module.">
+      <!-- MEDIA: Claude Code prototype — rough first pass (screenshot) staggered
+           against the live prototype (video), connected by an arrow. On mobile,
+           just the video. -->
+      <figure class="cs-figure cs-duo reveal" data-media="CLAUDE-CODE">
+        <div class="cs-duo__row">
+          <div class="cs-duo__item cs-duo__item--a">
+            <img src="../assets/images/outbound-engine/prototypingscreen1.png" alt="The rough first pass in Claude Code: dark theme, before the final polish.">
+          </div>
+          <img class="cs-duo__arrow" src="../assets/images/outbound-engine/arrow.svg" alt="" aria-hidden="true">
+          <div class="cs-duo__item cs-duo__item--b">
+            <video class="cs-video" autoplay muted loop playsinline preload="metadata"
+                   poster="../assets/video/outbound-engine/posters/claude-code-prototype.jpg">
+              <source src="../assets/video/outbound-engine/claude-code-prototype.mp4" type="video/mp4">
+            </video>
+          </div>
         </div>
         <figcaption>Refining the prototype in Claude Code, one module at a time.</figcaption>
       </figure>
@@ -233,6 +293,33 @@
         <p class="cs-block__body cs-point"><b>Parallax transitions</b><br>Creates depth as you scroll. Each section feels like turning a slide rather than reading a wall of text.</p>
         <p class="cs-block__body cs-point"><b>Fixed bottom CTA</b><br>Keeps trial and demo accessible throughout the experience while supporting conversion and accessibility.</p>
       </div>
+      <!-- MEDIA: the four decisions, one screen each -->
+      <div class="cs-grid4 reveal">
+        <figure class="cs-figure" data-media="DECISION-SCROLLBAR">
+          <div class="cs-figure__media">
+            <img src="../assets/images/outbound-engine/scrollbar.jpg" alt="The scroll progress bar running along the top of the page.">
+          </div>
+          <figcaption>Scroll bar.</figcaption>
+        </figure>
+        <figure class="cs-figure" data-media="DECISION-SIDENAV">
+          <div class="cs-figure__media">
+            <img src="../assets/images/outbound-engine/sidenav.jpg" alt="Side navigation dots letting readers jump to chapters of the page.">
+          </div>
+          <figcaption>Side navigation.</figcaption>
+        </figure>
+        <figure class="cs-figure" data-media="DECISION-PARALLAX">
+          <div class="cs-figure__media">
+            <img src="../assets/images/outbound-engine/paralax.jpg" alt="A parallax transition carrying depth between two sections of the page.">
+          </div>
+          <figcaption>Parallax transitions.</figcaption>
+        </figure>
+        <figure class="cs-figure" data-media="DECISION-FIXEDCTA">
+          <div class="cs-figure__media">
+            <img src="../assets/images/outbound-engine/fixedbottomCTA.jpg" alt="The fixed bottom bar with trial and demo CTAs, visible throughout the scroll.">
+          </div>
+          <figcaption>Fixed bottom CTA.</figcaption>
+        </figure>
+      </div>
 
       <!-- HANDOFF + QA -->
       <div class="cs-block reveal">
@@ -242,6 +329,13 @@
         <p class="cs-block__body">As the team developed, I provided feedback through Loom. I recorded expected interactions, called out bugs, and showed exactly what needed to change.</p>
         <p class="cs-block__body">I stayed close to implementation to keep the original design intent intact throughout the build.</p>
       </div>
+      <!-- MEDIA: Slack feedback + Loom review -->
+      <figure class="cs-figure reveal" data-media="HANDOFF-QA">
+        <div class="cs-figure__media cs-figure__media--plain">
+          <img src="../assets/images/outbound-engine/Handoff+qa.png" alt="A Slack message with handoff feedback next to a Loom recording reviewing the landing page build.">
+        </div>
+        <figcaption>Feedback via Slack and Loom: specific, recorded, and easy to act on.</figcaption>
+      </figure>
 
       <!-- FINAL DESIGN -->
       <div class="cs-block reveal">
@@ -278,19 +372,6 @@
         <p class="cs-block__body cs-point"><b>Next steps</b><br>Expand to an additional DJ batch of 800 and proven ICP verticals.<br>Measure landing page conversion and trial-to-activation.<br>Track CAC against the paid baseline.</p>
       </div>
 
-    </div>
-  </section>
-
-  <!-- ============ FINAL CTA ============ -->
-  <section class="cs-band cs-band--plain">
-    <div class="cs-in">
-      <div class="cs-block reveal">
-        <p class="cs-label">Full case study</p>
-        <h2 class="cs-block__h">Want to see how I got there?</h2>
-        <p class="cs-block__body">The full case study goes deeper into the strategy, email design, landing page explorations, AI prompting, prototyping, team alignment, and decisions behind the final experience.</p>
-        <!-- TODO: no AI Outbound case-study PDF exists in the repo yet. Path follows the floor-plans convention; drop the file at assets/outbound-engine-case-study.pdf to make this link live. -->
-        <a class="cs-cta" href="../assets/outbound-engine-case-study.pdf" target="_blank" rel="noopener">Read the full case study <span class="arrow">→</span></a>
-      </div>
     </div>
   </section>
 
