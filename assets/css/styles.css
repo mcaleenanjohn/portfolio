@@ -191,7 +191,14 @@
   .meta-item{font-size:14px; letter-spacing:0.05em; text-transform:uppercase; color:#333; white-space:nowrap;}
   .meta-rule{flex:1; height:1px; background:var(--line);}
   .available{display:flex; align-items:center; gap:8px; color:#13a333; font-size:14px; letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap;}
-  .available .dot{color:#13a333;}
+  .available .dot{color:#13a333; display:inline-block; animation:available-pulse 2s ease-in-out infinite;}
+  @keyframes available-pulse{
+    0%, 100%{opacity:1; transform:scale(1);}
+    50%{opacity:0.4; transform:scale(0.72);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .available .dot{animation:none;}
+  }
 
   /* Faint dot-grid texture behind the hero (Figma: ~20px grid, near-invisible ink).
      A canvas replaces ::before on fine pointers so the cursor can drag through it. */
