@@ -116,6 +116,7 @@
         <p class="cs-label">Overview</p>
         <h2 class="cs-block__h">Venues are one of HoneyBook's highest-revenue verticals. They're also the customers most likely to need a floor plan for every event.</h2>
         <p class="cs-block__body">Without a native tool, venue teams were piecing the workflow together across Canva, Prismm, and AllSeated. HoneyBook already had the booking data, client portal, and relationship. It was missing the tool.</p>
+        <p class="cs-block__body cs-point"><b>My role</b><br>I led design from early discovery through launch, partnering closely with Product, Engineering, and our venue team.</p>
       </div>
 
       <!-- PROBLEM -->
@@ -124,6 +125,7 @@
         <h2 class="cs-block__h">Floor planning was a completely separate job.</h2>
         <p class="cs-block__body">Build a plan in another tool, export it, email it, get feedback, update it, and send it again. Different people ended up working from different versions. None of them were connected to the contract, guest count, or client portal.</p>
         <p class="cs-block__body">The opportunity: bring floor planning into the project itself, creating one shared source of truth.</p>
+        <p class="cs-block__body">Early research changed how we thought about this problem. Rather than building another drawing tool, I pushed us to focus on the workflow around floor plans, particularly version control, reuse, and sharing. That insight helped shape the MVP and gave the team a clearer framework for what we should build first.</p>
       </div>
 
       <!-- RESEARCH / COMPETITIVE ANALYSIS -->
@@ -131,8 +133,9 @@
         <p class="cs-label">Research</p>
         <h2 class="cs-block__h">Version control was the real problem, not drawing.</h2>
         <p class="cs-block__body">We studied 13 tools, mapped the venue workflow end-to-end, and spoke with early users.</p>
-        <p class="cs-block__body">The biggest pain wasn't creating a floor plan. It was knowing which version was current.</p>
-        <p class="cs-block__body">We also found that venues work in two modes: set up a space once, then adapt it for each booking. Most existing tools didn't account for that.</p>
+        <p class="cs-block__body">Our initial assumption was that venues needed a better way to create floor plans. Research showed us something different.</p>
+        <p class="cs-block__body">Most teams already had ways to draw a room. The real friction came after that. Files were duplicated, renamed, shared across tools, and modified for individual events. Teams struggled to know which version was current and often rebuilt work they had already done.</p>
+        <p class="cs-block__body">The opportunity was not to build a better drawing tool. It was to create a better system around the floor plan.</p>
         <p class="cs-block__body">HoneyBook also had something competitors didn't. The context around the plan already lived in the product: guest counts, contracts, clients, and relationships.</p>
       </div>
       <!-- MEDIA: COMPETITIVE-RESEARCH -->
@@ -171,7 +174,7 @@
         <p class="cs-label">Workspace</p>
         <h2 class="cs-block__h">Before designing the builder, I designed where it would live.</h2>
         <p class="cs-block__body">Floor Plans became a dedicated tab inside every HoneyBook project.</p>
-        <p class="cs-block__body">I defined three statuses to separate preparation from sharing, distinct experiences for venues and clients, and a creation flow that surfaced templates from the start.</p>
+        <p class="cs-block__body">I defined three statuses to separate preparation from sharing, distinct experiences for venues and clients, and a creation flow built to accommodate templates once they were ready.</p>
       </div>
       <!-- MEDIA: WORKSPACE-FLOOR-PLANS-TAB (video) -->
       <figure class="cs-figure reveal" data-media="WORKSPACE-FLOOR-PLANS-TAB">
@@ -188,8 +191,8 @@
       <div class="cs-block reveal">
         <p class="cs-label">V1</p>
         <h2 class="cs-block__h">We deliberately started small.</h2>
-        <p class="cs-block__body">The first version wasn't meant to solve everything.</p>
-        <p class="cs-block__body">We wanted to get a working product in front of real venues, learn from how they actually used it, and use that feedback to shape what came next.</p>
+        <p class="cs-block__body">Research also showed that venues rarely start from scratch. They typically set up a space once, then adapt it for different bookings. A wedding, corporate dinner, and cocktail reception might all use the same room, but each requires a different arrangement.</p>
+        <p class="cs-block__body">We knew reusable templates and blueprint upload would better support this workflow, but neither could make the first release. Rather than expanding the scope, I advocated for launching V1 to a smaller group of customers so we could validate the core experience while being transparent about its limitations.</p>
         <p class="cs-block__body">V1 launched to 30% of venue members with the core builder:</p>
         <p class="cs-block__body cs-point"><b>1 · Element panel</b><br>Furniture, shapes, rooms, and text. Organized by category. Drag or click to place.</p>
         <p class="cs-block__body cs-point"><b>2 · Status bar</b><br>The plan's name, its project, and its current publish status, at a glance.</p>
@@ -207,6 +210,8 @@
       <div class="cs-block reveal">
         <p class="cs-label">Feedback</p>
         <h2 class="cs-block__h">We shipped to 30%. Then we listened.</h2>
+        <p class="cs-block__body">The first release validated the core idea, but it also exposed where the experience broke down in real workflows.</p>
+        <p class="cs-block__body">Rather than treating launch as the finish line, I worked with Product and Engineering to understand where users were getting stuck and which problems were worth solving next.</p>
         <p class="cs-block__body">11 venue members responded. The signal was clear.</p>
       </div>
       <div class="cs-block cs-block--cont reveal">
@@ -232,8 +237,7 @@
         <p class="cs-label">Direction</p>
         <h2 class="cs-block__h">The feedback gave us a clear path forward.</h2>
         <p class="cs-block__body">I helped align Product, Engineering, and the venue team around what to ship first and what would make the product genuinely competitive.</p>
-        <p class="cs-block__body cs-point"><b>Align the MVP</b><br>Focus V1 on the core builder so we could launch quickly and learn.</p>
-        <p class="cs-block__body cs-point"><b>Set the V2 priorities</b><br>Turn member feedback into a roadmap centered on scale, blueprint uploads, templates, and precision.</p>
+        <p class="cs-block__body cs-point"><b>Set the V2 priorities</b><br>What we learned from the release reinforced the direction. Templates and blueprint upload became must-haves, giving venues a consistent starting point while still letting each event evolve independently.</p>
         <p class="cs-block__body cs-point"><b>Protect the product vision</b><br>Partner through build and QA to keep Floor Plans native to the HoneyBook project, not a standalone tool.</p>
       </div>
 
@@ -334,7 +338,8 @@
           <div class="cs-stat"><dt>1.37</dt><dd>Average plans per user</dd></div>
           <div class="cs-stat"><dt>41</dt><dd>Shares per day</dd></div>
         </dl>
-        <p class="cs-note">These numbers came entirely from organic discovery before the first marketing push.</p>
+        <p class="cs-block__body">The early adoption validated more than the feature itself. It reinforced the decision to focus on the workflow around floor plans rather than simply giving venues another tool for drawing them.</p>
+        <p class="cs-block__body">What started as a request for a floor plan builder became a new way for venues to create, reuse, manage, and share one of the most important artifacts in their workflow.</p>
       </div>
 
     </div>
