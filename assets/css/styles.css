@@ -209,7 +209,7 @@
     background-image:radial-gradient(circle at center, rgba(20,20,20,0.08) 1px, transparent 1.6px);
     background-size:20px 20px;
   }
-  .hero.dots-live::before, .cs-hero.dots-live::before{opacity:0;}
+  .hero.dots-live::before, .cs-hero.dots-live::before, footer.dots-live::before{opacity:0;}
   .hero-dots{
     position:absolute; top:0; bottom:0; left:50%; width:100vw; transform:translateX(-50%);
     z-index:0; pointer-events:none;
@@ -363,8 +363,15 @@
     display:flex; align-items:center; gap:10px;
     font-size:24px; font-weight:400; color:var(--ink); margin-bottom:16px;
   }
-  .process-step__icon{display:inline-flex; color:var(--accent); flex-shrink:0;}
-  .process-step__icon svg{width:20px; height:20px; display:block;}
+  /* Philosophy icons: a Lottie animation (useAnimations set, recoloured to
+     the accent) mounts into each slot and plays once when its row scrolls
+     into view, then again on hover. The inline SVG is the resting fallback
+     for no-JS / reduced motion. */
+  .process-step__icon{display:inline-flex; color:var(--accent); flex-shrink:0; width:30px; height:30px;}
+  .process-step__icon svg{width:100%; height:100%; display:block;}
+  .process-step__icon.has-lottie > svg{display:none;}
+  .process-step__icon .lottie-mount{width:100%; height:100%; display:block;}
+  .process-step__icon .lottie-mount svg{display:block;}
   .process-step__body p{font-size:18px; color:var(--body); line-height:1.6;}
 
   @media (max-width:900px){
@@ -379,31 +386,59 @@
     .about-signature{display:none;}
   }
 
-  /* ---------- FOOTER ---------- */
-  footer{background:var(--footer); color:var(--accent); padding:120px 0; text-align:center;}
-  footer h2{font-size:clamp(48px,11vw,140px); font-weight:400; line-height:0.95; margin-bottom:56px;}
-  .footer-contact{display:flex; flex-direction:column; align-items:center; gap:22px;}
-  .footer-email{display:inline-flex; align-items:center; gap:16px;}
-  .footer-email__addr{font-size:clamp(18px,2.8vw,32px); color:var(--accent); line-height:1;}
-  .footer-copy{
-    position:relative; display:flex; width:34px; height:34px; padding:0;
-    border:0; background:none; color:var(--accent); cursor:pointer; transition:opacity .2s ease;
+  /* ---------- FOOTER ----------
+     Airy, left-aligned contact block: headline + email sit together up top,
+     a large gap drops the LinkedIn link near the bottom, and the copyright
+     row closes it out. Same container width as the rest of the site. */
+  footer{
+    position:relative;
+    background:var(--bg); color:var(--body);
+    padding-block:clamp(88px,14vh,160px) clamp(36px,5vh,52px);
+    text-align:left;
   }
-  .footer-copy:hover{opacity:.65;}
-  .footer-copy svg{width:24px; height:24px; margin:auto; display:block;}
+  /* same faint dot-grid texture + interactive canvas as the hero */
+  footer::before{
+    content:"";
+    position:absolute; top:0; bottom:0; left:50%; width:100vw; transform:translateX(-50%);
+    z-index:0; pointer-events:none;
+    background-image:radial-gradient(circle at center, rgba(20,20,20,0.08) 1px, transparent 1.6px);
+    background-size:20px 20px;
+  }
+  /* each row is the site container (matches .wrap), so the footer edge lines
+     up with the nav logo and every other section on the page */
+  footer > *{position:relative; z-index:1; max-width:1440px; margin-inline:auto; padding-inline:58px;}
+  footer h2{
+    font-size:clamp(32px,5vw,52px); font-weight:400; line-height:1.05;
+    letter-spacing:-0.015em; color:var(--ink); margin-bottom:clamp(20px,3vw,30px);
+  }
+  .footer-contact{display:flex; flex-direction:column; align-items:flex-start; gap:clamp(72px,12vw,150px);}
+  .footer-email{display:inline-flex; align-items:center; gap:14px;}
+  .footer-email__addr{
+    font-size:clamp(19px,2.4vw,28px); color:var(--body); line-height:1.1;
+  }
+  .footer-email__addr:hover{color:var(--accent);}
+  .footer-copy{
+    position:relative; display:flex; width:32px; height:32px; padding:0;
+    border:0; background:none; color:var(--body); cursor:pointer; transition:color .2s ease;
+  }
+  .footer-copy:hover{color:var(--accent);}
+  .footer-copy svg{width:20px; height:20px; margin:auto; display:block;}
   .footer-copy .footer-copy__check{display:none;}
   .footer-copy.is-copied .footer-copy__copy{display:none;}
-  .footer-copy.is-copied .footer-copy__check{display:block; color:#fff;}
+  .footer-copy.is-copied .footer-copy__check{display:block; color:var(--accent);}
   .footer-copy__toast{
-    position:absolute; left:50%; top:calc(100% + 10px); transform:translateX(-50%);
-    font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:#fff;
+    position:absolute; left:50%; top:calc(100% + 8px); transform:translateX(-50%);
+    font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--body);
     white-space:nowrap; opacity:0; transition:opacity .2s ease; pointer-events:none;
   }
   .footer-copy.is-copied .footer-copy__toast{opacity:1;}
-  .footer-linkedin{font-size:clamp(18px,2.8vw,32px); color:var(--accent); line-height:1;}
+  .footer-linkedin{
+    font-size:clamp(19px,2.4vw,28px); color:var(--body); line-height:1.1;
+  }
+  .footer-linkedin:hover{color:var(--accent);}
   .footer-bottom{
-    margin-top:104px; display:flex; justify-content:space-between; gap:16px;
-    font-size:12px; color:rgba(255,255,255,0.5); letter-spacing:0.05em;
+    margin-top:clamp(64px,10vw,120px); display:flex; justify-content:space-between; gap:16px;
+    font-size:12px; color:var(--body); letter-spacing:0.04em;
   }
 
   /* placed here (after the base rules above) so these actually win at mobile
@@ -413,9 +448,11 @@
     .section-head{margin-bottom:40px;}
     .case + .case{margin-top:48px; padding-top:48px;}
     .about{padding:56px 0;}
-    footer{padding:72px 0;}
-    footer h2{margin-bottom:40px;}
-    .footer-bottom{margin-top:64px;}
+    footer{padding-block:80px 32px;}
+    footer > *{padding-inline:20px;}
+    footer h2{margin-bottom:24px;}
+    .footer-contact{gap:64px;}
+    .footer-bottom{margin-top:64px; flex-direction:column; gap:6px;}
   }
 
   .reveal{opacity:0; transform:translateY(24px);}
