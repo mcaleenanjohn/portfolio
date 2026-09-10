@@ -584,7 +584,6 @@
     window.addEventListener('blur', () => ring.classList.remove('is-visible'));
   })();
 
-
   /* ---------- Copy-to-clipboard (footer email) ---------- */
   document.querySelectorAll('[data-copy]').forEach((btn) => {
     btn.addEventListener('click', async () => {

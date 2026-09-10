@@ -360,19 +360,66 @@
   }
   .process-step__body{max-width:745px;}
   .process-step__title{
-    display:flex; align-items:center; gap:10px;
     font-size:24px; font-weight:400; color:var(--ink); margin-bottom:16px;
   }
-  /* Philosophy icons: a Lottie animation (useAnimations set, recoloured to
-     the accent) mounts into each slot and plays once when its row scrolls
-     into view, then again on hover. The inline SVG is the resting fallback
-     for no-JS / reduced motion. */
-  .process-step__icon{display:inline-flex; color:var(--accent); flex-shrink:0; width:30px; height:30px;}
-  .process-step__icon svg{width:100%; height:100%; display:block;}
-  .process-step__icon.has-lottie > svg{display:none;}
-  .process-step__icon .lottie-mount{width:100%; height:100%; display:block;}
-  .process-step__icon .lottie-mount svg{display:block;}
   .process-step__body p{font-size:18px; color:var(--body); line-height:1.6;}
+
+  /* ---- Philosophy icons ----
+     Hand-drawn abstract line-art, thin stroke, sitting above each title.
+     Each runs a slow seamless CSS loop; under reduced motion they hold a
+     clean static pose. */
+  .process-step__icon{display:block; width:52px; height:52px; margin-bottom:20px; color:var(--ink);}
+  .process-step__icon .pi{width:100%; height:100%; display:block; overflow:visible;}
+  .pi *{transform-box:fill-box; transform-origin:center;}
+
+  @keyframes pi-rot{ to{ transform:rotate(1turn); } }
+
+  /* 01 — nested rings, counter-rotating */
+  .pi-understand .pi-u1{ stroke-dasharray:92 21; }
+  .pi-understand .pi-u2{ stroke-dasharray:52 17; transform:rotate(140deg); }
+  .pi .pi-u1{ animation:pi-rot 11s linear infinite; }
+  .pi .pi-u2{ animation:pi-rot-b 7s linear infinite reverse; }
+  @keyframes pi-rot-b{ from{ transform:rotate(140deg); } to{ transform:rotate(500deg); } }
+
+  /* 02 — asterisk drawing in to a focused point */
+  .pi .pi-c-rays{ animation:pi-clarify 4.4s ease-in-out infinite; }
+  @keyframes pi-clarify{ 0%,100%{ transform:rotate(0) scale(1); } 50%{ transform:rotate(45deg) scale(.68); } }
+  .pi .pi-c-dot{ animation:pi-cdot 4.4s ease-in-out infinite; }
+  @keyframes pi-cdot{ 0%,100%{ opacity:.25; } 50%{ opacity:1; } }
+
+  /* 03 — isometric cube building edge by edge */
+  .pi-tangible .pi-t-cube path{ stroke-dasharray:1; stroke-dashoffset:0; }
+  .pi .pi-t-cube path{ animation:pi-build 3.8s ease-in-out infinite; }
+  .pi .pi-t-cube path:nth-child(1){ animation-delay:0s; }
+  .pi .pi-t-cube path:nth-child(2){ animation-delay:.06s; }
+  .pi .pi-t-cube path:nth-child(3){ animation-delay:.14s; }
+  .pi .pi-t-cube path:nth-child(4){ animation-delay:.2s; }
+  .pi .pi-t-cube path:nth-child(5){ animation-delay:.3s; }
+  .pi .pi-t-cube path:nth-child(6){ animation-delay:.24s; }
+  .pi .pi-t-cube path:nth-child(7){ animation-delay:.28s; }
+  .pi .pi-t-cube path:nth-child(8){ animation-delay:.4s; }
+  .pi .pi-t-cube path:nth-child(9){ animation-delay:.44s; }
+  @keyframes pi-build{ 0%{ stroke-dashoffset:1; } 26%{ stroke-dashoffset:0; } 74%{ stroke-dashoffset:0; } 100%{ stroke-dashoffset:-1; } }
+
+  /* 04 — isometric planes sliding into a stack, then a lift */
+  .pi-ship .pi-pl1{ --ox:-7px; } .pi-ship .pi-pl2{ --ox:6px; } .pi-ship .pi-pl3{ --ox:-4px; }
+  .pi .pi-pl{ animation:pi-align 3.6s ease-in-out infinite; }
+  .pi .pi-pl2{ animation-delay:.1s; }
+  .pi .pi-pl3{ animation-delay:.2s; }
+  @keyframes pi-align{ 0%,100%{ transform:translateX(var(--ox)); opacity:.35; } 30%,66%{ transform:translateX(0); opacity:1; } }
+  .pi .pi-s-stack{ animation:pi-lift 3.6s ease-in-out infinite; }
+  @keyframes pi-lift{ 0%,40%{ transform:translateY(0); } 56%{ transform:translateY(-3.5px); } 74%,100%{ transform:translateY(0); } }
+
+  /* 05 — a cycle turning while progress bars step up */
+  .pi .pi-l-cyc{ animation:pi-rot 4s linear infinite; }
+  .pi .pi-br{ transform-origin:bottom; animation:pi-rise 4s ease-in-out infinite; }
+  .pi .pi-br2{ animation-delay:.3s; }
+  .pi .pi-br3{ animation-delay:.6s; }
+  @keyframes pi-rise{ 0%{ transform:scaleY(0); } 26%{ transform:scaleY(1); } 80%{ transform:scaleY(1); } 100%{ transform:scaleY(0); } }
+
+  @media (prefers-reduced-motion: reduce){
+    .pi *{ animation:none !important; }
+  }
 
   @media (max-width:900px){
     .about-inner{padding:0 20px;}
