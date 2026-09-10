@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Philosophy icons — preview</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie_light.min.js"></script>
+<style>
+  :root{ --accent:#FF4C37; --ink:#141414; --body:#4F4F4F; --bg:#F9F6F6; --line:#CECECE; }
+  *{ box-sizing:border-box; margin:0; }
+  body{ background:var(--bg); color:var(--ink); font:16px/1.5 -apple-system, "Segoe UI", system-ui, sans-serif; padding:40px 32px 96px; }
+  h1{ font-size:22px; font-weight:600; margin-bottom:6px; }
+  .sub{ color:var(--body); margin-bottom:28px; }
+  #diag{ font:13px/1.7 ui-monospace, Menlo, monospace; background:#fff; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin-bottom:44px; white-space:pre-wrap; max-width:720px; }
+  .ok{ color:#13a333; } .bad{ color:#c0341d; font-weight:600; } .warn{ color:#b26a00; }
+
+  .row{ display:grid; grid-template-columns:repeat(5, 1fr); gap:24px; max-width:1100px; }
+  .cell{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:24px 12px 16px; text-align:center; }
+  .cell h3{ font-size:13px; font-weight:600; margin-top:14px; }
+  .cell p{ font-size:11px; color:var(--body); margin-top:3px; }
+  .icon{ width:48px; height:48px; margin:0 auto; color:var(--accent); display:inline-flex; outline:1px dashed rgba(0,0,0,.12); }
+  .icon .lottie-mount{ width:100%; height:100%; }
+  .icon svg{ width:100%; height:100%; display:block; }
+  .grp{ font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--body); margin:52px 0 18px; }
+  .fallbacks .icon{ width:30px; height:30px; outline:none; }
+  button{ font:inherit; padding:8px 16px; border:1px solid var(--ink); background:#fff; border-radius:6px; cursor:pointer; margin-bottom:28px; }
+</style>
+</head>
+<body>
+
+<h1>Philosophy icons — preview</h1>
+<p class="sub">Diagnostic sandbox. Not linked from the site.</p>
+
+<div id="diag">running checks…</div>
+<button id="replay">▶ replay all</button>
+
+<p class="grp">Animated Lottie (should loop)</p>
+<div class="row" id="animated">
+  <div class="cell"><span class="icon" data-lottie="explore"></span><h3>Understand the real problem</h3><p>explore</p></div>
+  <div class="cell"><span class="icon" data-lottie="zoomIn"></span><h3>Create clarity</h3><p>zoomIn</p></div>
+  <div class="cell"><span class="icon" data-lottie="edit"></span><h3>Make it tangible</h3><p>edit</p></div>
+  <div class="cell"><span class="icon" data-lottie="share"></span><h3>Align and ship</h3><p>share</p></div>
+  <div class="cell"><span class="icon" data-lottie="activity"></span><h3>Learn and improve</h3><p>activity</p></div>
+</div>
+
+<p class="grp">Static SVG fallbacks</p>
+<div class="row fallbacks">
+  <div class="cell"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span><h3>explore</h3></div>
+  <div class="cell"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span><h3>zoomIn</h3></div>
+  <div class="cell"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><h3>edit</h3></div>
+  <div class="cell"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg></span><h3>share</h3></div>
+  <div class="cell"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span><h3>activity</h3></div>
+</div>
+
+<script>
+(function () {
+  var diag = document.getElementById('diag');
+  var lines = [];
+  function log(msg, cls) { lines.push(cls ? '<span class="' + cls + '">' + msg + '</span>' : msg); diag.innerHTML = lines.join('\n'); }
+
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  log('browser: ' + navigator.userAgent.replace(/^Mozilla\/5\.0 /, ''));
+  log('prefers-reduced-motion: ' + (rm ? 'REDUCE  (the real site hides Lottie in this mode — this page ignores it)' : 'no-preference'), rm ? 'warn' : 'ok');
+  log('lottie-web: ' + (window.lottie ? ('loaded, v' + (window.lottie.version || '?')) : 'NOT LOADED — cdnjs blocked'), window.lottie ? 'ok' : 'bad');
+  if (!window.lottie) return;
+
+  var names = ['explore', 'zoomIn', 'edit', 'share', 'activity'];
+  var anims = [];
+
+  names.forEach(function (name) {
+    var slot = document.querySelector('.icon[data-lottie="' + name + '"]');
+    var mount = document.createElement('span');
+    mount.className = 'lottie-mount';
+    slot.appendChild(mount);
+
+    var anim = window.lottie.loadAnimation({
+      container: mount, renderer: 'svg', loop: false, autoplay: false,
+      path: 'assets/lottie/' + name + '.json'
+    });
+    var rec = { name: name, anim: anim, dir: 1, timer: null, loaded: false };
+    anims.push(rec);
+
+    anim.addEventListener('data_ready', function () {
+      rec.loaded = true;
+      anim.goToAndStop(Math.max(0, anim.totalFrames - 1), true);
+      report();
+      startPingPong(rec);
+    });
+    anim.addEventListener('data_failed', function () {
+      log(name + '.json → LOADED BUT FAILED TO PARSE (server returned non-JSON?)', 'bad');
+    });
+  });
+
+  function svgShapes(mount) {
+    var svg = mount.querySelector('svg');
+    if (!svg) return { svg: false, shapes: 0, painted: 0 };
+    var els = svg.querySelectorAll('path,circle,rect,line,polyline,polygon,ellipse');
+    var painted = 0;
+    els.forEach(function (e) { var r = e.getBoundingClientRect(); if (r.width > 0.3 && r.height > 0.3) painted++; });
+    return { svg: true, shapes: els.length, painted: painted, w: Math.round(svg.getBoundingClientRect().width) };
+  }
+
+  var reported = false;
+  function report() {
+    if (reported || !anims.every(function (r) { return r.loaded; })) return;
+    reported = true;
+    setTimeout(function () {
+      anims.forEach(function (r) {
+        var s = svgShapes(r.anim.wrapper || r.anim.renderer.svgElement.parentNode);
+        var mount = document.querySelector('.icon[data-lottie="' + r.name + '"] .lottie-mount');
+        var info = svgShapes(mount);
+        log(r.name + ': svg=' + info.svg + '  shapes=' + info.shapes + '  painted=' + info.painted + '  boxW=' + info.w + '  frames=' + Math.round(r.anim.totalFrames),
+            (info.svg && info.painted > 0) ? 'ok' : 'bad');
+      });
+      log(anims.every(function (r) { var m = document.querySelector('.icon[data-lottie="' + r.name + '"] .lottie-mount'); return svgShapes(m).painted > 0; })
+          ? '→ Lottie is rendering. If you still see blank, it is a browser paint bug (try another browser).'
+          : '→ Lottie mounted but is not painting shapes in this browser.',
+          'warn');
+    }, 400);
+  }
+
+  function startPingPong(rec) {
+    var HOLD_END = 900, HOLD_START = 200;
+    rec.anim.addEventListener('complete', function () {
+      rec.dir = -rec.dir;
+      rec.anim.setDirection(rec.dir);
+      clearTimeout(rec.timer);
+      rec.timer = setTimeout(function () { rec.anim.play(); }, rec.dir === 1 ? HOLD_START : HOLD_END);
+    });
+    var slot = document.querySelector('.icon[data-lottie="' + rec.name + '"]');
+    slot.addEventListener('mouseenter', function () { clearTimeout(rec.timer); rec.dir = 1; rec.anim.setDirection(1); rec.anim.goToAndPlay(0, true); });
+    rec.dir = 1; rec.anim.setDirection(1); rec.anim.goToAndPlay(0, true);
+  }
+
+  document.getElementById('replay').addEventListener('click', function () {
+    anims.forEach(function (r) { clearTimeout(r.timer); r.dir = 1; r.anim.setDirection(1); r.anim.goToAndPlay(0, true); });
+  });
+})();
+</script>
+
+</body>
+</html>
