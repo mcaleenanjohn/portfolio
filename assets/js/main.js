@@ -584,55 +584,6 @@
     window.addEventListener('blur', () => ring.classList.remove('is-visible'));
   })();
 
-  /* ---------- Philosophy icons ----------
-     Mounts a Lottie (useAnimations set) into each icon slot. The whole set
-     plays a staggered cascade whenever the list scrolls into view, and each
-     icon replays on hover. Needs lottie-web and motion; otherwise the inline
-     SVG fallback just stays put. */
-  (function philosophyIcons() {
-    const slots = Array.prototype.slice.call(
-      document.querySelectorAll('.process-step__icon[data-lottie]'));
-    if (!slots.length || reduceMotion || !window.lottie ||
-        !('IntersectionObserver' in window)) return;
-
-    const list = slots[0].closest('.process-list') || slots[0].closest('section');
-    const anims = [];
-
-    slots.forEach((slot) => {
-      const name = slot.getAttribute('data-lottie');
-      const mount = document.createElement('span');
-      mount.className = 'lottie-mount';
-      const anim = window.lottie.loadAnimation({
-        container: mount,
-        renderer: 'svg',
-        loop: false,
-        autoplay: false,
-        path: 'assets/lottie/' + name + '.json'
-      });
-      anim.addEventListener('DOMLoaded', () => {
-        anim.goToAndStop(Math.max(0, anim.totalFrames - 1), true); // rest = finished icon
-        slot.appendChild(mount);
-        slot.classList.add('has-lottie');
-      });
-      anims.push(anim);
-      const step = slot.closest('.process-step');
-      if (step) step.addEventListener('mouseenter', () => anim.goToAndPlay(0, true));
-    });
-
-    function cascade() {
-      anims.forEach((anim, i) => {
-        setTimeout(() => anim.goToAndPlay(0, true), i * 130);
-      });
-    }
-
-    let wasIn = false;
-    const io = new IntersectionObserver((entries) => {
-      const inView = entries[0].isIntersecting;
-      if (inView && !wasIn) cascade();
-      wasIn = inView;
-    }, { threshold: 0, rootMargin: '0px 0px -15% 0px' });
-    io.observe(list || slots[0]);
-  })();
 
   /* ---------- Copy-to-clipboard (footer email) ---------- */
   document.querySelectorAll('[data-copy]').forEach((btn) => {
