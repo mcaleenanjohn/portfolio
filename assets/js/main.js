@@ -509,6 +509,78 @@
     });
   })();
 
+  /* ---------- Custom cursor ----------
+     An accent dot that follows the pointer with a spring, morphing into a
+     larger ring over interactive targets. Ported from the Sora UI "Custom
+     Cursor" (React + Motion) to vanilla JS: same 16px→48px morph, same
+     0.375s custom ease, a hand-rolled spring for the follow. Desktop /
+     fine-pointer / motion-safe only; the native cursor is left visible. */
+  (function customCursor() {
+    if (reduceMotion) return;
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+
+    const TARGETS = 'a[href], button, [role="button"], summary, label[for], select, textarea, input:not([type="hidden"])';
+
+    const ring = document.createElement('div');
+    ring.className = 'cursor-ring';
+    ring.setAttribute('aria-hidden', 'true');
+    ring.innerHTML = '<div class="cursor-ring__dot"></div>';
+    document.body.appendChild(ring);
+
+    let targetX = 0, targetY = 0;          // where the pointer is
+    let x = 0, y = 0, vx = 0, vy = 0;      // ring position + velocity
+    let seen = false, raf = null, lastT = 0;
+
+    // spring: stiffness / damping / mass tuned to match Motion's useSpring
+    const STIFFNESS = 150, DAMPING = 22, MASS = 0.8;
+
+    function draw() {
+      ring.style.transform = 'translate(' + x + 'px, ' + y + 'px) translate(-50%, -50%)';
+    }
+
+    function tick(t) {
+      const dt = Math.min(0.032, lastT ? (t - lastT) / 1000 : 0.016);
+      lastT = t;
+      const ax = (STIFFNESS * (targetX - x) - DAMPING * vx) / MASS;
+      const ay = (STIFFNESS * (targetY - y) - DAMPING * vy) / MASS;
+      vx += ax * dt; vy += ay * dt;
+      x += vx * dt;  y += vy * dt;
+      draw();
+      if (Math.abs(targetX - x) < 0.1 && Math.abs(targetY - y) < 0.1 &&
+          Math.abs(vx) < 0.1 && Math.abs(vy) < 0.1) {
+        x = targetX; y = targetY; vx = vy = 0; draw();
+        raf = null;
+        return;
+      }
+      raf = requestAnimationFrame(tick);
+    }
+
+    function kick() {
+      if (raf === null) { lastT = 0; raf = requestAnimationFrame(tick); }
+    }
+
+    window.addEventListener('pointermove', (e) => {
+      targetX = e.clientX; targetY = e.clientY;
+      if (!seen) {
+        seen = true;
+        x = targetX; y = targetY; draw();
+        ring.classList.add('is-visible');
+      }
+      const t = e.target;
+      ring.classList.toggle('is-active', !!(t && t.closest && t.closest(TARGETS)));
+      kick();
+    }, { passive: true });
+
+    // hide when the pointer leaves the window, restore when it returns
+    document.addEventListener('mouseout', (e) => {
+      if (!e.relatedTarget) ring.classList.remove('is-visible');
+    });
+    document.addEventListener('mouseover', () => {
+      if (seen) ring.classList.add('is-visible');
+    });
+    window.addEventListener('blur', () => ring.classList.remove('is-visible'));
+  })();
+
   /* ---------- Copy-to-clipboard (footer email) ---------- */
   document.querySelectorAll('[data-copy]').forEach((btn) => {
     btn.addEventListener('click', async () => {
